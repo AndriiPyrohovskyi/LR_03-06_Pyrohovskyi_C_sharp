@@ -68,7 +68,7 @@ namespace ЛР_03_03_Пироговський
             Questionnaire.Image = Properties.Resources.questionnaire3;
             label7.Visible = true; label7.Location = new Point(205, 483); // 490 - 7
             label8.Visible = true; label8.Location = new Point(195, 516); // 523 - 7
-            label9.Visible = true; label9.Location = new Point(195, 516); // 523 - 7
+            label9.Visible = true; label9.Location = new Point(240, 550); // 523 - 7
             label10.Visible = false;
             label11.Visible = false;
             label12.Visible = false;
@@ -234,6 +234,14 @@ namespace ЛР_03_03_Пироговський
 
         private void pictureBox2_Click(object sender, EventArgs e)
         {
+            for (int i = 0; i < TableOfCrypto.Rows.Count-1; i++)
+            {
+                if (MainList.ListOfCrypto[i].GetType() != typeof(CryptoCurrency))
+                {
+                    TableOfCrypto.Rows[i].Visible = false;
+                }
+                else TableOfCrypto.Rows[i].Visible = true;
+            }
             TableOfCrypto.Columns[6].Visible = false;
             TableOfCrypto.Columns[7].Visible = false;
             TableOfCrypto.Columns[8].Visible = false;
@@ -249,6 +257,14 @@ namespace ЛР_03_03_Пироговський
 
         private void pictureBox3_Click(object sender, EventArgs e)
         {
+            for (int i = 0; i < TableOfCrypto.Rows.Count-1; i++)
+            {
+                if (MainList.ListOfCrypto[i].GetType() != typeof(StableCoin))
+                {
+                    TableOfCrypto.Rows[i].Visible = false;
+                }
+                else TableOfCrypto.Rows[i].Visible = true;
+            }
             TableOfCrypto.Columns[6].Visible = true;
             TableOfCrypto.Columns[7].Visible = true;
             TableOfCrypto.Columns[8].Visible = true;
@@ -264,6 +280,14 @@ namespace ЛР_03_03_Пироговський
 
         private void pictureBox4_Click(object sender, EventArgs e)
         {
+            for (int i = 0; i < TableOfCrypto.Rows.Count - 1; i++)
+            {
+                if (MainList.ListOfCrypto[i].GetType() != typeof(ShitCoin))
+                {
+                    TableOfCrypto.Rows[i].Visible = false;
+                }
+                else TableOfCrypto.Rows[i].Visible = true;
+            }
             TableOfCrypto.Columns[6].Visible = true;
             TableOfCrypto.Columns[7].Visible = false;
             TableOfCrypto.Columns[8].Visible = false;
@@ -283,7 +307,15 @@ namespace ЛР_03_03_Пироговський
 
             if (result == DialogResult.Yes)
             {
-                TableOfCrypto.Columns[6].Visible = false;
+                for (int i = 0; i < TableOfCrypto.Rows.Count - 1; i++)
+                {
+                    if (MainList.ListOfCrypto[i].GetType() != typeof(Blockchain) && MainList.ListOfCrypto[i].GetType() != typeof(MemeCoin) && MainList.ListOfCrypto[i].GetType() != typeof(Coins))
+                    {
+                        TableOfCrypto.Rows[i].Visible = false;
+                    }
+                    else TableOfCrypto.Rows[i].Visible = true;
+                }
+                TableOfCrypto.Columns[6].Visible = true;
                 TableOfCrypto.Columns[7].Visible = false;
                 TableOfCrypto.Columns[8].Visible = false;
                 TableOfCrypto.Columns[9].Visible = false;
@@ -297,7 +329,15 @@ namespace ЛР_03_03_Пироговський
             }
             else if (result == DialogResult.No)
             {
-                TableOfCrypto.Columns[6].Visible = false;
+                for (int i = 0; i < TableOfCrypto.Rows.Count - 1; i++)
+                {
+                    if (MainList.ListOfCrypto[i].GetType() != typeof(Blockchain))
+                    {
+                        TableOfCrypto.Rows[i].Visible = false;
+                    }
+                    else TableOfCrypto.Rows[i].Visible = true;
+                }
+                TableOfCrypto.Columns[6].Visible = true;
                 TableOfCrypto.Columns[7].Visible = false;
                 TableOfCrypto.Columns[8].Visible = false;
                 TableOfCrypto.Columns[9].Visible = false;
@@ -313,13 +353,21 @@ namespace ЛР_03_03_Пироговський
 
         private void pictureBox6_Click(object sender, EventArgs e)
         {
-            TableOfCrypto.Columns[6].Visible = false;
+            for (int i = 0; i < TableOfCrypto.Rows.Count - 1; i++)
+            {
+                if (MainList.ListOfCrypto[i].GetType() != typeof(MemeCoin))
+                {
+                    TableOfCrypto.Rows[i].Visible = false;
+                }
+                else TableOfCrypto.Rows[i].Visible = true;
+            }
+            TableOfCrypto.Columns[6].Visible = true;
             TableOfCrypto.Columns[7].Visible = false;
             TableOfCrypto.Columns[8].Visible = false;
             TableOfCrypto.Columns[9].Visible = false;
             TableOfCrypto.Columns[10].Visible = false;
-            TableOfCrypto.Columns[11].Visible = false;
-            TableOfCrypto.Columns[12].Visible = false;
+            TableOfCrypto.Columns[11].Visible = true;
+            TableOfCrypto.Columns[12].Visible = true;
             TableOfCrypto.Columns[13].Visible = true;
             TableOfCrypto.Columns[14].Visible = true;
             TableOfCrypto.Columns[15].Visible = true;
@@ -328,13 +376,21 @@ namespace ЛР_03_03_Пироговський
 
         private void pictureBox7_Click(object sender, EventArgs e)
         {
-            TableOfCrypto.Columns[6].Visible = false;
+            for (int i = 0; i < TableOfCrypto.Rows.Count - 1; i++)
+            {
+                if (MainList.ListOfCrypto[i].GetType() != typeof(Coins))
+                {
+                    TableOfCrypto.Rows[i].Visible = false;
+                }
+                else TableOfCrypto.Rows[i].Visible = true;
+            }
+            TableOfCrypto.Columns[6].Visible = true;
             TableOfCrypto.Columns[7].Visible = false;
             TableOfCrypto.Columns[8].Visible = false;
             TableOfCrypto.Columns[9].Visible = false;
             TableOfCrypto.Columns[10].Visible = false;
-            TableOfCrypto.Columns[11].Visible = false;
-            TableOfCrypto.Columns[12].Visible = false;
+            TableOfCrypto.Columns[11].Visible = true;
+            TableOfCrypto.Columns[12].Visible = true;
             TableOfCrypto.Columns[13].Visible = true;
             TableOfCrypto.Columns[14].Visible = false;
             TableOfCrypto.Columns[15].Visible = false;
@@ -343,6 +399,10 @@ namespace ЛР_03_03_Пироговський
 
         private void button1_Click(object sender, EventArgs e)
         {
+            for (int i = 0; i < TableOfCrypto.Rows.Count - 1; i++)
+            {
+                TableOfCrypto.Rows[i].Visible = true;
+            }
             TableOfCrypto.Columns[6].Visible = true;
             TableOfCrypto.Columns[7].Visible = true;
             TableOfCrypto.Columns[8].Visible = true;
@@ -354,6 +414,11 @@ namespace ЛР_03_03_Пироговський
             TableOfCrypto.Columns[14].Visible = true;
             TableOfCrypto.Columns[15].Visible = true;
             TableOfCrypto.Columns[16].Visible = true;
+        }
+
+        private void searchToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -41,7 +41,7 @@ namespace ЛР_03_03_Пироговський
         public override void FillDataGridRow(DataGridViewRow row)
         {
             base.FillDataGridRow(row);
-            row.Cells[13].Value = "Монета";
+            row.Cells[13].Value = "Мемкоін";
             row.Cells[14].Value = NameOfMemeCommunity;
             row.Cells[15].Value = NumberOfFanbase;
         }

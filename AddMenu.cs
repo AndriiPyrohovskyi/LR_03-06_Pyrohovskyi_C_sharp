@@ -71,5 +71,16 @@ namespace ЛР_03_03_Пироговський
             Type1 = 6;
             Funk1();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            MainMenu.MainList.add(new CryptoCurrency("BTC", "Bitcoin", 62000, -1.31, 3100000, 20000));
+            MainMenu.MainList.add(new StableCoin("USDT", "Tether", 1, 0, 12413, 1234, "Dollar USA", "Topchik"));
+            MainMenu.MainList.add(new ShitCoin("HMSTR", "Hamster Combat Coin", 0.003, -69.96, 141, 12, 0, 0));
+            MainMenu.MainList.add(new Blockchain("SOL", "Solana", 145, -3.21, 1352, 1221, "Solana Blockchain", 4));
+            MainMenu.MainList.add(new MemeCoin("1000PEPE", "Pepe Frog Coin", 0.00011, -0.21, 135, 121, "Solana Blockchain", 40, "PEPE lovers", 1239324));
+            MainMenu.MainList.add(new Coins("NOT", "Notcoin", 0.009, 1.21, 991, 124, "The Open Network", 120, "Clicker in Telegram"));
+            MainMenu.MainList.RefreshDataGrid();
+        }
     }
 }

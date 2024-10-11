@@ -31,10 +31,24 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainMenu));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.panel1 = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
+            this.TableOfCrypto = new System.Windows.Forms.DataGridView();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.searchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
@@ -42,7 +56,7 @@
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.TableOfCrypto = new System.Windows.Forms.DataGridView();
+            this.Questionnaire = new System.Windows.Forms.PictureBox();
             this.ShortName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FullName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.LastPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -60,26 +74,13 @@
             this.NameOfMemeCommunity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NumberOfFanbase = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Technologies = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.Questionnaire = new System.Windows.Forms.PictureBox();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.TableOfCrypto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
@@ -87,7 +88,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TableOfCrypto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Questionnaire)).BeginInit();
             this.SuspendLayout();
             // 
@@ -96,7 +96,7 @@
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.addToolStripMenuItem,
-            this.deleteToolStripMenuItem});
+            this.searchToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
@@ -111,12 +111,6 @@
             this.addToolStripMenuItem.Text = "Add";
             this.addToolStripMenuItem.Click += new System.EventHandler(this.addToolStripMenuItem_Click);
             // 
-            // deleteToolStripMenuItem
-            // 
-            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
-            this.deleteToolStripMenuItem.Text = "Delete";
-            // 
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -130,11 +124,11 @@
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.label9);
             this.splitContainer1.Panel2.Controls.Add(this.label13);
             this.splitContainer1.Panel2.Controls.Add(this.label12);
             this.splitContainer1.Panel2.Controls.Add(this.label11);
             this.splitContainer1.Panel2.Controls.Add(this.label10);
-            this.splitContainer1.Panel2.Controls.Add(this.label9);
             this.splitContainer1.Panel2.Controls.Add(this.label8);
             this.splitContainer1.Panel2.Controls.Add(this.label7);
             this.splitContainer1.Panel2.Controls.Add(this.label6);
@@ -174,77 +168,10 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // pictureBox7
-            // 
-            this.pictureBox7.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox7.Location = new System.Drawing.Point(644, 168);
-            this.pictureBox7.Name = "pictureBox7";
-            this.pictureBox7.Size = new System.Drawing.Size(232, 54);
-            this.pictureBox7.TabIndex = 13;
-            this.pictureBox7.TabStop = false;
-            this.pictureBox7.Click += new System.EventHandler(this.pictureBox7_Click);
-            // 
-            // pictureBox6
-            // 
-            this.pictureBox6.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox6.Location = new System.Drawing.Point(186, 167);
-            this.pictureBox6.Name = "pictureBox6";
-            this.pictureBox6.Size = new System.Drawing.Size(232, 54);
-            this.pictureBox6.TabIndex = 12;
-            this.pictureBox6.TabStop = false;
-            this.pictureBox6.Click += new System.EventHandler(this.pictureBox6_Click);
-            // 
-            // pictureBox5
-            // 
-            this.pictureBox5.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox5.Location = new System.Drawing.Point(414, 92);
-            this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(232, 54);
-            this.pictureBox5.TabIndex = 11;
-            this.pictureBox5.TabStop = false;
-            this.pictureBox5.Click += new System.EventHandler(this.pictureBox5_Click);
-            // 
-            // pictureBox4
-            // 
-            this.pictureBox4.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox4.Location = new System.Drawing.Point(729, 66);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(232, 54);
-            this.pictureBox4.TabIndex = 10;
-            this.pictureBox4.TabStop = false;
-            this.pictureBox4.Click += new System.EventHandler(this.pictureBox4_Click);
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox3.Location = new System.Drawing.Point(97, 66);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(232, 54);
-            this.pictureBox3.TabIndex = 9;
-            this.pictureBox3.TabStop = false;
-            this.pictureBox3.Click += new System.EventHandler(this.pictureBox3_Click);
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox2.Location = new System.Drawing.Point(413, 5);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(232, 54);
-            this.pictureBox2.TabIndex = 8;
-            this.pictureBox2.TabStop = false;
-            this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(1034, 224);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            // 
             // TableOfCrypto
             // 
+            this.TableOfCrypto.AllowUserToAddRows = false;
+            this.TableOfCrypto.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.TableOfCrypto.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.TableOfCrypto.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ShortName,
@@ -264,6 +191,7 @@
             this.NameOfMemeCommunity,
             this.NumberOfFanbase,
             this.Technologies});
+            this.TableOfCrypto.GridColor = System.Drawing.Color.Black;
             this.TableOfCrypto.Location = new System.Drawing.Point(3, 3);
             this.TableOfCrypto.Name = "TableOfCrypto";
             this.TableOfCrypto.ReadOnly = true;
@@ -271,147 +199,6 @@
             this.TableOfCrypto.Size = new System.Drawing.Size(1034, 528);
             this.TableOfCrypto.TabIndex = 0;
             this.TableOfCrypto.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.TableOfCrypto_CellClick);
-            // 
-            // ShortName
-            // 
-            this.ShortName.HeaderText = "Назва";
-            this.ShortName.MinimumWidth = 6;
-            this.ShortName.Name = "ShortName";
-            this.ShortName.ReadOnly = true;
-            this.ShortName.Width = 50;
-            // 
-            // FullName
-            // 
-            this.FullName.HeaderText = "Повна назва";
-            this.FullName.MinimumWidth = 6;
-            this.FullName.Name = "FullName";
-            this.FullName.ReadOnly = true;
-            this.FullName.Width = 70;
-            // 
-            // LastPrice
-            // 
-            this.LastPrice.HeaderText = "Остання ціна";
-            this.LastPrice.MinimumWidth = 6;
-            this.LastPrice.Name = "LastPrice";
-            this.LastPrice.ReadOnly = true;
-            this.LastPrice.Width = 55;
-            // 
-            // PriceChangePer24H
-            // 
-            this.PriceChangePer24H.HeaderText = "Зміна ціни (%/24H)";
-            this.PriceChangePer24H.MinimumWidth = 6;
-            this.PriceChangePer24H.Name = "PriceChangePer24H";
-            this.PriceChangePer24H.ReadOnly = true;
-            this.PriceChangePer24H.Width = 70;
-            // 
-            // Capitalization
-            // 
-            this.Capitalization.HeaderText = "Капіталізація (млн $)";
-            this.Capitalization.MinimumWidth = 6;
-            this.Capitalization.Name = "Capitalization";
-            this.Capitalization.ReadOnly = true;
-            this.Capitalization.Width = 80;
-            // 
-            // VolumePer24H
-            // 
-            this.VolumePer24H.DividerWidth = 10;
-            this.VolumePer24H.HeaderText = "Об\'єм торгів (млн $/24H)";
-            this.VolumePer24H.MinimumWidth = 6;
-            this.VolumePer24H.Name = "VolumePer24H";
-            this.VolumePer24H.ReadOnly = true;
-            this.VolumePer24H.Width = 75;
-            // 
-            // TypeOfCrypto
-            // 
-            this.TypeOfCrypto.HeaderText = "Тип криптовалюти";
-            this.TypeOfCrypto.MinimumWidth = 6;
-            this.TypeOfCrypto.Name = "TypeOfCrypto";
-            this.TypeOfCrypto.ReadOnly = true;
-            this.TypeOfCrypto.Width = 90;
-            // 
-            // ConectionWithActive
-            // 
-            this.ConectionWithActive.HeaderText = "Зв\'язок з активом";
-            this.ConectionWithActive.MinimumWidth = 6;
-            this.ConectionWithActive.Name = "ConectionWithActive";
-            this.ConectionWithActive.ReadOnly = true;
-            this.ConectionWithActive.Width = 65;
-            // 
-            // StabilizationMechanizm
-            // 
-            this.StabilizationMechanizm.DividerWidth = 10;
-            this.StabilizationMechanizm.HeaderText = "Механізм стабілізації";
-            this.StabilizationMechanizm.MinimumWidth = 6;
-            this.StabilizationMechanizm.Name = "StabilizationMechanizm";
-            this.StabilizationMechanizm.ReadOnly = true;
-            this.StabilizationMechanizm.Width = 80;
-            // 
-            // RiskLevel
-            // 
-            this.RiskLevel.HeaderText = "Рівень ризиків (1-10)";
-            this.RiskLevel.MinimumWidth = 6;
-            this.RiskLevel.Name = "RiskLevel";
-            this.RiskLevel.ReadOnly = true;
-            this.RiskLevel.Width = 55;
-            // 
-            // ReliabilityOfDevelopers
-            // 
-            this.ReliabilityOfDevelopers.DividerWidth = 10;
-            this.ReliabilityOfDevelopers.HeaderText = "Надійність розробників (1-10)";
-            this.ReliabilityOfDevelopers.MinimumWidth = 6;
-            this.ReliabilityOfDevelopers.Name = "ReliabilityOfDevelopers";
-            this.ReliabilityOfDevelopers.ReadOnly = true;
-            this.ReliabilityOfDevelopers.Width = 90;
-            // 
-            // BlockchainName
-            // 
-            this.BlockchainName.HeaderText = "Назва блокчейну";
-            this.BlockchainName.MinimumWidth = 6;
-            this.BlockchainName.Name = "BlockchainName";
-            this.BlockchainName.ReadOnly = true;
-            this.BlockchainName.Width = 75;
-            // 
-            // TranzactionSpeed
-            // 
-            this.TranzactionSpeed.DividerWidth = 10;
-            this.TranzactionSpeed.HeaderText = "Швидкість транзакцій";
-            this.TranzactionSpeed.MinimumWidth = 6;
-            this.TranzactionSpeed.Name = "TranzactionSpeed";
-            this.TranzactionSpeed.ReadOnly = true;
-            this.TranzactionSpeed.Width = 80;
-            // 
-            // TypeOfCryptoBasedOnBlockchain
-            // 
-            this.TypeOfCryptoBasedOnBlockchain.HeaderText = "Тип криптовалюти на базі блокчейну";
-            this.TypeOfCryptoBasedOnBlockchain.MinimumWidth = 6;
-            this.TypeOfCryptoBasedOnBlockchain.Name = "TypeOfCryptoBasedOnBlockchain";
-            this.TypeOfCryptoBasedOnBlockchain.ReadOnly = true;
-            this.TypeOfCryptoBasedOnBlockchain.Width = 95;
-            // 
-            // NameOfMemeCommunity
-            // 
-            this.NameOfMemeCommunity.HeaderText = "Назва мем спільноти";
-            this.NameOfMemeCommunity.MinimumWidth = 6;
-            this.NameOfMemeCommunity.Name = "NameOfMemeCommunity";
-            this.NameOfMemeCommunity.ReadOnly = true;
-            this.NameOfMemeCommunity.Width = 75;
-            // 
-            // NumberOfFanbase
-            // 
-            this.NumberOfFanbase.DividerWidth = 10;
-            this.NumberOfFanbase.HeaderText = "Число фанбази";
-            this.NumberOfFanbase.MinimumWidth = 6;
-            this.NumberOfFanbase.Name = "NumberOfFanbase";
-            this.NumberOfFanbase.ReadOnly = true;
-            this.NumberOfFanbase.Width = 75;
-            // 
-            // Technologies
-            // 
-            this.Technologies.HeaderText = "Технології";
-            this.Technologies.MinimumWidth = 6;
-            this.Technologies.Name = "Technologies";
-            this.Technologies.ReadOnly = true;
-            this.Technologies.Width = 75;
             // 
             // label13
             // 
@@ -556,14 +343,248 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "label1";
             // 
+            // searchToolStripMenuItem
+            // 
+            this.searchToolStripMenuItem.Name = "searchToolStripMenuItem";
+            this.searchToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
+            this.searchToolStripMenuItem.Text = "Search";
+            this.searchToolStripMenuItem.Click += new System.EventHandler(this.searchToolStripMenuItem_Click);
+            // 
+            // pictureBox7
+            // 
+            this.pictureBox7.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox7.Location = new System.Drawing.Point(644, 168);
+            this.pictureBox7.Name = "pictureBox7";
+            this.pictureBox7.Size = new System.Drawing.Size(232, 54);
+            this.pictureBox7.TabIndex = 13;
+            this.pictureBox7.TabStop = false;
+            this.pictureBox7.Click += new System.EventHandler(this.pictureBox7_Click);
+            // 
+            // pictureBox6
+            // 
+            this.pictureBox6.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox6.Location = new System.Drawing.Point(186, 167);
+            this.pictureBox6.Name = "pictureBox6";
+            this.pictureBox6.Size = new System.Drawing.Size(232, 54);
+            this.pictureBox6.TabIndex = 12;
+            this.pictureBox6.TabStop = false;
+            this.pictureBox6.Click += new System.EventHandler(this.pictureBox6_Click);
+            // 
+            // pictureBox5
+            // 
+            this.pictureBox5.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox5.Location = new System.Drawing.Point(414, 92);
+            this.pictureBox5.Name = "pictureBox5";
+            this.pictureBox5.Size = new System.Drawing.Size(232, 54);
+            this.pictureBox5.TabIndex = 11;
+            this.pictureBox5.TabStop = false;
+            this.pictureBox5.Click += new System.EventHandler(this.pictureBox5_Click);
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox4.Location = new System.Drawing.Point(729, 66);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(232, 54);
+            this.pictureBox4.TabIndex = 10;
+            this.pictureBox4.TabStop = false;
+            this.pictureBox4.Click += new System.EventHandler(this.pictureBox4_Click);
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox3.Location = new System.Drawing.Point(97, 66);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(232, 54);
+            this.pictureBox3.TabIndex = 9;
+            this.pictureBox3.TabStop = false;
+            this.pictureBox3.Click += new System.EventHandler(this.pictureBox3_Click);
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox2.Location = new System.Drawing.Point(413, 5);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(232, 54);
+            this.pictureBox2.TabIndex = 8;
+            this.pictureBox2.TabStop = false;
+            this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(1034, 224);
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            // 
             // Questionnaire
             // 
-            this.Questionnaire.Image = global::ЛР_03_03_Пироговський.Properties.Resources.questionnaire6;
+            this.Questionnaire.Image = global::ЛР_03_03_Пироговський.Properties.Resources.questionnaire3;
             this.Questionnaire.Location = new System.Drawing.Point(5, 6);
             this.Questionnaire.Name = "Questionnaire";
             this.Questionnaire.Size = new System.Drawing.Size(489, 755);
             this.Questionnaire.TabIndex = 0;
             this.Questionnaire.TabStop = false;
+            // 
+            // ShortName
+            // 
+            this.ShortName.HeaderText = "Назва";
+            this.ShortName.MinimumWidth = 6;
+            this.ShortName.Name = "ShortName";
+            this.ShortName.ReadOnly = true;
+            this.ShortName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ShortName.Width = 50;
+            // 
+            // FullName
+            // 
+            this.FullName.HeaderText = "Повна назва";
+            this.FullName.MinimumWidth = 6;
+            this.FullName.Name = "FullName";
+            this.FullName.ReadOnly = true;
+            this.FullName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.FullName.Width = 70;
+            // 
+            // LastPrice
+            // 
+            this.LastPrice.HeaderText = "Остання ціна";
+            this.LastPrice.MinimumWidth = 6;
+            this.LastPrice.Name = "LastPrice";
+            this.LastPrice.ReadOnly = true;
+            this.LastPrice.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.LastPrice.Width = 55;
+            // 
+            // PriceChangePer24H
+            // 
+            this.PriceChangePer24H.HeaderText = "Зміна ціни (%/24H)";
+            this.PriceChangePer24H.MinimumWidth = 6;
+            this.PriceChangePer24H.Name = "PriceChangePer24H";
+            this.PriceChangePer24H.ReadOnly = true;
+            this.PriceChangePer24H.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.PriceChangePer24H.Width = 70;
+            // 
+            // Capitalization
+            // 
+            this.Capitalization.HeaderText = "Капіталізація (млн $)";
+            this.Capitalization.MinimumWidth = 6;
+            this.Capitalization.Name = "Capitalization";
+            this.Capitalization.ReadOnly = true;
+            this.Capitalization.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Capitalization.Width = 80;
+            // 
+            // VolumePer24H
+            // 
+            this.VolumePer24H.DividerWidth = 10;
+            this.VolumePer24H.HeaderText = "Об\'єм торгів (млн $/24H)";
+            this.VolumePer24H.MinimumWidth = 6;
+            this.VolumePer24H.Name = "VolumePer24H";
+            this.VolumePer24H.ReadOnly = true;
+            this.VolumePer24H.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.VolumePer24H.Width = 75;
+            // 
+            // TypeOfCrypto
+            // 
+            this.TypeOfCrypto.HeaderText = "Тип криптовалюти";
+            this.TypeOfCrypto.MinimumWidth = 6;
+            this.TypeOfCrypto.Name = "TypeOfCrypto";
+            this.TypeOfCrypto.ReadOnly = true;
+            this.TypeOfCrypto.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.TypeOfCrypto.Width = 90;
+            // 
+            // ConectionWithActive
+            // 
+            this.ConectionWithActive.HeaderText = "Зв\'язок з активом";
+            this.ConectionWithActive.MinimumWidth = 6;
+            this.ConectionWithActive.Name = "ConectionWithActive";
+            this.ConectionWithActive.ReadOnly = true;
+            this.ConectionWithActive.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ConectionWithActive.Width = 65;
+            // 
+            // StabilizationMechanizm
+            // 
+            this.StabilizationMechanizm.DividerWidth = 10;
+            this.StabilizationMechanizm.HeaderText = "Механізм стабілізації";
+            this.StabilizationMechanizm.MinimumWidth = 6;
+            this.StabilizationMechanizm.Name = "StabilizationMechanizm";
+            this.StabilizationMechanizm.ReadOnly = true;
+            this.StabilizationMechanizm.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.StabilizationMechanizm.Width = 80;
+            // 
+            // RiskLevel
+            // 
+            this.RiskLevel.HeaderText = "Рівень ризиків (1-10)";
+            this.RiskLevel.MinimumWidth = 6;
+            this.RiskLevel.Name = "RiskLevel";
+            this.RiskLevel.ReadOnly = true;
+            this.RiskLevel.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.RiskLevel.Width = 55;
+            // 
+            // ReliabilityOfDevelopers
+            // 
+            this.ReliabilityOfDevelopers.DividerWidth = 10;
+            this.ReliabilityOfDevelopers.HeaderText = "Надійність розробників (1-10)";
+            this.ReliabilityOfDevelopers.MinimumWidth = 6;
+            this.ReliabilityOfDevelopers.Name = "ReliabilityOfDevelopers";
+            this.ReliabilityOfDevelopers.ReadOnly = true;
+            this.ReliabilityOfDevelopers.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ReliabilityOfDevelopers.Width = 90;
+            // 
+            // BlockchainName
+            // 
+            this.BlockchainName.HeaderText = "Назва блокчейну";
+            this.BlockchainName.MinimumWidth = 6;
+            this.BlockchainName.Name = "BlockchainName";
+            this.BlockchainName.ReadOnly = true;
+            this.BlockchainName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.BlockchainName.Width = 75;
+            // 
+            // TranzactionSpeed
+            // 
+            this.TranzactionSpeed.DividerWidth = 10;
+            this.TranzactionSpeed.HeaderText = "Швидкість транзакцій";
+            this.TranzactionSpeed.MinimumWidth = 6;
+            this.TranzactionSpeed.Name = "TranzactionSpeed";
+            this.TranzactionSpeed.ReadOnly = true;
+            this.TranzactionSpeed.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.TranzactionSpeed.Width = 80;
+            // 
+            // TypeOfCryptoBasedOnBlockchain
+            // 
+            this.TypeOfCryptoBasedOnBlockchain.HeaderText = "Тип криптовалюти на базі блокчейну";
+            this.TypeOfCryptoBasedOnBlockchain.MinimumWidth = 6;
+            this.TypeOfCryptoBasedOnBlockchain.Name = "TypeOfCryptoBasedOnBlockchain";
+            this.TypeOfCryptoBasedOnBlockchain.ReadOnly = true;
+            this.TypeOfCryptoBasedOnBlockchain.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.TypeOfCryptoBasedOnBlockchain.Width = 95;
+            // 
+            // NameOfMemeCommunity
+            // 
+            this.NameOfMemeCommunity.HeaderText = "Назва мем спільноти";
+            this.NameOfMemeCommunity.MinimumWidth = 6;
+            this.NameOfMemeCommunity.Name = "NameOfMemeCommunity";
+            this.NameOfMemeCommunity.ReadOnly = true;
+            this.NameOfMemeCommunity.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.NameOfMemeCommunity.Width = 75;
+            // 
+            // NumberOfFanbase
+            // 
+            this.NumberOfFanbase.DividerWidth = 10;
+            this.NumberOfFanbase.HeaderText = "Число фанбази";
+            this.NumberOfFanbase.MinimumWidth = 6;
+            this.NumberOfFanbase.Name = "NumberOfFanbase";
+            this.NumberOfFanbase.ReadOnly = true;
+            this.NumberOfFanbase.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.NumberOfFanbase.Width = 75;
+            // 
+            // Technologies
+            // 
+            this.Technologies.HeaderText = "Технології";
+            this.Technologies.MinimumWidth = 6;
+            this.Technologies.Name = "Technologies";
+            this.Technologies.ReadOnly = true;
+            this.Technologies.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Technologies.Width = 75;
             // 
             // MainMenu
             // 
@@ -585,6 +606,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.TableOfCrypto)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
@@ -592,7 +614,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TableOfCrypto)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Questionnaire)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -603,7 +624,6 @@
 
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem addToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.DataGridView TableOfCrypto;
         private System.Windows.Forms.Panel panel1;
@@ -622,6 +642,14 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.PictureBox pictureBox7;
+        private System.Windows.Forms.PictureBox pictureBox6;
+        private System.Windows.Forms.PictureBox pictureBox5;
+        private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ToolStripMenuItem searchToolStripMenuItem;
         private System.Windows.Forms.DataGridViewTextBoxColumn ShortName;
         private System.Windows.Forms.DataGridViewTextBoxColumn FullName;
         private System.Windows.Forms.DataGridViewTextBoxColumn LastPrice;
@@ -639,13 +667,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn NameOfMemeCommunity;
         private System.Windows.Forms.DataGridViewTextBoxColumn NumberOfFanbase;
         private System.Windows.Forms.DataGridViewTextBoxColumn Technologies;
-        private System.Windows.Forms.PictureBox pictureBox7;
-        private System.Windows.Forms.PictureBox pictureBox6;
-        private System.Windows.Forms.PictureBox pictureBox5;
-        private System.Windows.Forms.PictureBox pictureBox4;
-        private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.Button button1;
     }
 }
 

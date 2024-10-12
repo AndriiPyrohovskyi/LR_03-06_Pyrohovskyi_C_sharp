@@ -110,7 +110,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1924, 30);
+            this.menuStrip1.Size = new System.Drawing.Size(1924, 28);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -143,20 +143,20 @@
             this.fromBinnaryToolStripMenuItem,
             this.fromtxtToolStripMenuItem});
             this.readToolStripMenuItem.Name = "readToolStripMenuItem";
-            this.readToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.readToolStripMenuItem.Size = new System.Drawing.Size(128, 26);
             this.readToolStripMenuItem.Text = "Read";
             // 
             // fromBinnaryToolStripMenuItem
             // 
             this.fromBinnaryToolStripMenuItem.Name = "fromBinnaryToolStripMenuItem";
-            this.fromBinnaryToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.fromBinnaryToolStripMenuItem.Size = new System.Drawing.Size(155, 26);
             this.fromBinnaryToolStripMenuItem.Text = "From .dat";
             this.fromBinnaryToolStripMenuItem.Click += new System.EventHandler(this.fromBinnaryToolStripMenuItem_Click);
             // 
             // fromtxtToolStripMenuItem
             // 
             this.fromtxtToolStripMenuItem.Name = "fromtxtToolStripMenuItem";
-            this.fromtxtToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.fromtxtToolStripMenuItem.Size = new System.Drawing.Size(155, 26);
             this.fromtxtToolStripMenuItem.Text = "From .txt";
             this.fromtxtToolStripMenuItem.Click += new System.EventHandler(this.fromtxtToolStripMenuItem_Click);
             // 
@@ -166,27 +166,27 @@
             this.todatToolStripMenuItem,
             this.totxtToolStripMenuItem});
             this.writeToolStripMenuItem.Name = "writeToolStripMenuItem";
-            this.writeToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.writeToolStripMenuItem.Size = new System.Drawing.Size(128, 26);
             this.writeToolStripMenuItem.Text = "Write";
             // 
             // todatToolStripMenuItem
             // 
             this.todatToolStripMenuItem.Name = "todatToolStripMenuItem";
-            this.todatToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.todatToolStripMenuItem.Size = new System.Drawing.Size(137, 26);
             this.todatToolStripMenuItem.Text = "To .dat";
             this.todatToolStripMenuItem.Click += new System.EventHandler(this.todatToolStripMenuItem_Click);
             // 
             // totxtToolStripMenuItem
             // 
             this.totxtToolStripMenuItem.Name = "totxtToolStripMenuItem";
-            this.totxtToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.totxtToolStripMenuItem.Size = new System.Drawing.Size(137, 26);
             this.totxtToolStripMenuItem.Text = "To .txt";
             this.totxtToolStripMenuItem.Click += new System.EventHandler(this.totxtToolStripMenuItem_Click);
             // 
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 30);
+            this.splitContainer1.Location = new System.Drawing.Point(0, 28);
             this.splitContainer1.Margin = new System.Windows.Forms.Padding(4);
             this.splitContainer1.Name = "splitContainer1";
             // 
@@ -211,7 +211,7 @@
             this.splitContainer1.Panel2.Controls.Add(this.label2);
             this.splitContainer1.Panel2.Controls.Add(this.label1);
             this.splitContainer1.Panel2.Controls.Add(this.Questionnaire);
-            this.splitContainer1.Size = new System.Drawing.Size(1924, 1010);
+            this.splitContainer1.Size = new System.Drawing.Size(1924, 1012);
             this.splitContainer1.SplitterDistance = 1299;
             this.splitContainer1.SplitterWidth = 5;
             this.splitContainer1.TabIndex = 1;

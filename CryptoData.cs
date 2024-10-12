@@ -11,6 +11,12 @@ public class CryptoData
     }
     public List<CryptoCurrency> ListOfCrypto { set; get; } = new List<CryptoCurrency>();
     public DataGridView _dataGrid { set; get; } = new DataGridView();
+
+    delegate CryptoCurrency delType(string[] values, DataGridViewRow row);
+    delegate bool delMatch(string[] values, int[] nonEmpty, int[] empty);
+    delegate double delParseDouble(object value);
+    delegate int delParseInt(object value);
+    delType GetCryptoType = DetermineCryptoType;
     public void add(CryptoCurrency item)
     {
         ListOfCrypto.Add(item);
@@ -23,100 +29,102 @@ public class CryptoData
                                        .Select(cell => cell.Value?.ToString() ?? "")
                                        .ToArray();
 
-            ListOfCrypto.Add(DetermineCryptoType(values, row));
+            ListOfCrypto.Add(GetCryptoType(values, row));
         }
     }
 
-    private CryptoCurrency DetermineCryptoType(string[] values, DataGridViewRow row)
+    private static CryptoCurrency DetermineCryptoType(string[] values, DataGridViewRow row)
     {
-        if (IsMatch(values, nonEmpty: new[] { 0, 1, 2, 3, 4, 5 }, empty: new[] { 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 }))
+        delMatch match = IsMatch;
+        delParseDouble parseDouble = ParseDouble;
+        delParseInt parseInt = ParseInt;
+        if (match(values, nonEmpty: new[] { 0, 1, 2, 3, 4, 5 }, empty: new[] { 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 }))
             return new CryptoCurrency(
                 row.Cells[0].Value?.ToString() ?? "",
                 row.Cells[1].Value?.ToString() ?? "",
-                ParseDouble(row.Cells[2].Value),
-                ParseDouble(row.Cells[3].Value),
-                ParseDouble(row.Cells[4].Value),
-                ParseDouble(row.Cells[5].Value)
+                parseDouble(row.Cells[2].Value),
+                parseDouble(row.Cells[3].Value),
+                parseDouble(row.Cells[4].Value),
+                parseDouble(row.Cells[5].Value)
             );
 
-        if (IsMatch(values, nonEmpty: new[] { 0, 1, 2, 3, 4, 5, 6, 7, 8 }, empty: new[] { 9, 10, 11, 12, 13, 14, 15, 16 }))
+        if (match(values, nonEmpty: new[] { 0, 1, 2, 3, 4, 5, 6, 7, 8 }, empty: new[] { 9, 10, 11, 12, 13, 14, 15, 16 }))
             return new StableCoin(
                 row.Cells[0].Value?.ToString() ?? "",
                 row.Cells[1].Value?.ToString() ?? "",
-                ParseDouble(row.Cells[2].Value),
+                parseDouble(row.Cells[2].Value),
                 ParseDouble(row.Cells[3].Value),
-                ParseDouble(row.Cells[4].Value),
+                parseDouble(row.Cells[4].Value),
                 ParseDouble(row.Cells[5].Value),
                 row.Cells[7].Value?.ToString() ?? "",
                 row.Cells[8].Value?.ToString() ?? ""
             );
 
-        if (IsMatch(values, nonEmpty: new[] { 0, 1, 2, 3, 4, 5, 6, 9, 10 }, empty: new[] { 7, 8, 11, 12, 13, 14, 15, 16 }))
+        if (match(values, nonEmpty: new[] { 0, 1, 2, 3, 4, 5, 6, 9, 10 }, empty: new[] { 7, 8, 11, 12, 13, 14, 15, 16 }))
             return new ShitCoin(
                 row.Cells[0].Value?.ToString() ?? "",
                 row.Cells[1].Value?.ToString() ?? "",
-                ParseDouble(row.Cells[2].Value),
-                ParseDouble(row.Cells[3].Value),
-                ParseDouble(row.Cells[4].Value),
+                parseDouble(row.Cells[2].Value),
+                parseDouble(row.Cells[3].Value),
+                parseDouble(row.Cells[4].Value),
                 ParseDouble(row.Cells[5].Value),
-                ParseInt(row.Cells[9].Value),
-                ParseInt(row.Cells[10].Value)
+                parseInt(row.Cells[9].Value),
+                parseInt(row.Cells[10].Value)
             );
 
-        if (IsMatch(values, nonEmpty: new[] { 0, 1, 2, 3, 4, 5, 6, 11, 12 }, empty: new[] { 7, 8, 9, 10, 13, 14, 15, 16 }))
+        if (match(values, nonEmpty: new[] { 0, 1, 2, 3, 4, 5, 6, 11, 12 }, empty: new[] { 7, 8, 9, 10, 13, 14, 15, 16 }))
             return new Blockchain(
                 row.Cells[0].Value?.ToString() ?? "",
                 row.Cells[1].Value?.ToString() ?? "",
-                ParseDouble(row.Cells[2].Value),
-                ParseDouble(row.Cells[3].Value),
-                ParseDouble(row.Cells[4].Value),
-                ParseDouble(row.Cells[5].Value),
+                parseDouble(row.Cells[2].Value),
+                parseDouble(row.Cells[3].Value),
+                parseDouble(row.Cells[4].Value),
+                parseDouble(row.Cells[5].Value),
                 row.Cells[11].Value?.ToString() ?? "",
-                ParseInt(row.Cells[12].Value)
+                parseInt(row.Cells[12].Value)
             );
 
-        if (IsMatch(values, nonEmpty: new[] { 0, 1, 2, 3, 4, 5, 6, 11, 12, 13, 14, 15 }, empty: new[] { 7, 8, 9, 10, 16 }))
+        if (match(values, nonEmpty: new[] { 0, 1, 2, 3, 4, 5, 6, 11, 12, 13, 14, 15 }, empty: new[] { 7, 8, 9, 10, 16 }))
             return new MemeCoin(
                 row.Cells[0].Value?.ToString() ?? "",
                 row.Cells[1].Value?.ToString() ?? "",
-                ParseDouble(row.Cells[2].Value),
-                ParseDouble(row.Cells[3].Value),
-                ParseDouble(row.Cells[4].Value),
-                ParseDouble(row.Cells[5].Value),
+                parseDouble(row.Cells[2].Value),
+                parseDouble(row.Cells[3].Value),
+                parseDouble(row.Cells[4].Value),
+                parseDouble(row.Cells[5].Value),
                 row.Cells[11].Value?.ToString() ?? "",
-                ParseInt(row.Cells[12].Value),
+                parseInt(row.Cells[12].Value),
                 row.Cells[14].Value?.ToString() ?? "",
-                ParseInt(row.Cells[15].Value)
+                parseInt(row.Cells[15].Value)
             );
 
-        if (IsMatch(values, nonEmpty: new[] { 0, 1, 2, 3, 4, 5, 6, 11, 12, 13, 16 }, empty: new[] { 7, 8, 9, 10, 14, 15 }))
+        if (match(values, nonEmpty: new[] { 0, 1, 2, 3, 4, 5, 6, 11, 12, 13, 16 }, empty: new[] { 7, 8, 9, 10, 14, 15 }))
             return new Coins(
                 row.Cells[0].Value?.ToString() ?? "",
                 row.Cells[1].Value?.ToString() ?? "",
-                ParseDouble(row.Cells[2].Value),
-                ParseDouble(row.Cells[3].Value),
-                ParseDouble(row.Cells[4].Value),
-                ParseDouble(row.Cells[5].Value),
+                parseDouble(row.Cells[2].Value),
+                parseDouble(row.Cells[3].Value),
+                parseDouble(row.Cells[4].Value),
+                parseDouble(row.Cells[5].Value),
                 row.Cells[11].Value?.ToString() ?? "",
-                ParseInt(row.Cells[12].Value),
+                parseInt(row.Cells[12].Value),
                 row.Cells[16].Value?.ToString() ?? ""
             );
 
         return null;
     }
-
-    private bool IsMatch(string[] values, int[] nonEmpty, int[] empty)
+    private static bool IsMatch(string[] values, int[] nonEmpty, int[] empty)
     {
         return nonEmpty.All(index => !string.IsNullOrEmpty(values[index])) &&
                empty.All(index => string.IsNullOrEmpty(values[index]));
     }
 
-    private double ParseDouble(object value)
+    private static double ParseDouble(object value)
     {
         return double.TryParse(value?.ToString(), out double result) ? result : 0.0;
     }
 
-    private int ParseInt(object value)
+    private static int ParseInt(object value)
     {
         return int.TryParse(value?.ToString(), out int result) ? result : 0;
     }
@@ -130,5 +138,4 @@ public class CryptoData
             ListOfCrypto[i].FillDataGridRow(_dataGrid.Rows[i]);
         }
     }
-
 }

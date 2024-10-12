@@ -1,13 +1,7 @@
 ﻿using System;
-using System.CodeDom;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Reflection.Emit;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 using System.Windows.Forms;
 
 namespace ЛР_03_03_Пироговський
@@ -62,7 +56,6 @@ namespace ЛР_03_03_Пироговський
             label12.Visible = false;
             label13.Visible = false;
         }
-
         public void StablePositions()
         {
             Questionnaire.Image = Properties.Resources.questionnaire3;
@@ -74,7 +67,6 @@ namespace ЛР_03_03_Пироговський
             label12.Visible = false;
             label13.Visible = false;
         }
-
         public void ShitPositions()
         {
             Questionnaire.Image = Properties.Resources.questionnaire4;
@@ -86,7 +78,6 @@ namespace ЛР_03_03_Пироговський
             label12.Visible = false;
             label13.Visible = false;
         }
-
         public void BlockchainPositions()
         {
             Questionnaire.Image = Properties.Resources.questionnaire6;
@@ -98,7 +89,6 @@ namespace ЛР_03_03_Пироговський
             label12.Visible = false;
             label13.Visible = false;
         }
-
         public void MemePositions()
         {
             Questionnaire.Image = Properties.Resources.questionnaire7;
@@ -110,7 +100,6 @@ namespace ЛР_03_03_Пироговський
             label12.Visible = true;
             label13.Visible = true;
         }
-
         public void CoinPositions()
         {
             Questionnaire.Image = Properties.Resources.questionnaire5;
@@ -122,7 +111,6 @@ namespace ЛР_03_03_Пироговський
             label12.Visible = true;
             label13.Visible = true;
         }
-
         public MainMenu()
         {
             InitializeComponent();
@@ -134,7 +122,6 @@ namespace ЛР_03_03_Пироговський
             AddMenu addMenu = new AddMenu();
             addMenu.Show();
         }
-
         private void TableOfCrypto_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             try
@@ -231,10 +218,9 @@ namespace ЛР_03_03_Пироговський
             {
             }
         }
-
         private void pictureBox2_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < TableOfCrypto.Rows.Count-1; i++)
+            for (int i = 0; i < TableOfCrypto.Rows.Count - 1; i++)
             {
                 if (MainList.ListOfCrypto[i].GetType() != typeof(CryptoCurrency))
                 {
@@ -254,7 +240,6 @@ namespace ЛР_03_03_Пироговський
             TableOfCrypto.Columns[15].Visible = false;
             TableOfCrypto.Columns[16].Visible = false;
         }
-
         private void pictureBox3_Click(object sender, EventArgs e)
         {
             for (int i = 0; i < TableOfCrypto.Rows.Count; i++)
@@ -277,7 +262,6 @@ namespace ЛР_03_03_Пироговський
             TableOfCrypto.Columns[15].Visible = false;
             TableOfCrypto.Columns[16].Visible = false;
         }
-
         private void pictureBox4_Click(object sender, EventArgs e)
         {
             for (int i = 0; i < TableOfCrypto.Rows.Count; i++)
@@ -300,7 +284,6 @@ namespace ЛР_03_03_Пироговський
             TableOfCrypto.Columns[15].Visible = false;
             TableOfCrypto.Columns[16].Visible = false;
         }
-
         private void pictureBox5_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show("Вивести криптовалюти наслідувані від блокчейну?", "Підтвердження", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -350,7 +333,6 @@ namespace ЛР_03_03_Пироговський
                 TableOfCrypto.Columns[16].Visible = false;
             }
         }
-
         private void pictureBox6_Click(object sender, EventArgs e)
         {
             for (int i = 0; i < TableOfCrypto.Rows.Count; i++)
@@ -373,7 +355,6 @@ namespace ЛР_03_03_Пироговський
             TableOfCrypto.Columns[15].Visible = true;
             TableOfCrypto.Columns[16].Visible = false;
         }
-
         private void pictureBox7_Click(object sender, EventArgs e)
         {
             for (int i = 0; i < TableOfCrypto.Rows.Count; i++)
@@ -396,7 +377,6 @@ namespace ЛР_03_03_Пироговський
             TableOfCrypto.Columns[15].Visible = false;
             TableOfCrypto.Columns[16].Visible = true;
         }
-
         private void button1_Click(object sender, EventArgs e)
         {
             for (int i = 0; i < TableOfCrypto.Rows.Count; i++)
@@ -415,11 +395,159 @@ namespace ЛР_03_03_Пироговський
             TableOfCrypto.Columns[15].Visible = true;
             TableOfCrypto.Columns[16].Visible = true;
         }
-
         private void searchToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Search search = new Search();
             search.Show();
+        }
+        public interface IWorkWithFile
+        {
+            void WorkWithFile(string format);
+        }
+        public class Read : IWorkWithFile
+        {
+            public void WorkWithFile(string format)
+            {
+                using (OpenFileDialog openFileDialog = new OpenFileDialog())
+                {
+                    openFileDialog.Filter = format;
+                    openFileDialog.Title = "Виберіть файл для відкриття";
+
+                    if (openFileDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        string filePath = openFileDialog.FileName;
+
+                        if (filePath.EndsWith(".txt"))
+                        {
+                            string[] lines = File.ReadAllLines(filePath);
+                            foreach (var line in lines)
+                            {
+                                string[] rowData = line.Split(new char[] { '\t' }, StringSplitOptions.None); // Залишити порожні елементи
+                                MainList._dataGrid.Rows.Add(rowData);
+                            }
+                        }
+                        else if (filePath.EndsWith(".dat"))
+                        {
+                            using (StreamReader reader = new StreamReader(File.Open(filePath, FileMode.Open)))
+                            {
+                                while (!reader.EndOfStream)
+                                {
+                                    string line = reader.ReadLine();
+                                    string[] rowData = line.Split(new char[] { '\t' }, StringSplitOptions.None); // Залишити порожні елементи
+                                    MainList._dataGrid.Rows.Add(rowData);
+                                }
+                            }
+                        }
+                    }
+                }
+                MainList.AllocateList();
+                MainList.RefreshDataGrid();
+            }
+        }
+        public class Write : IWorkWithFile
+        {
+            public void WorkWithFile(string format)
+            {
+                using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+                {
+                    saveFileDialog.Filter = format;
+                    saveFileDialog.Title = "Збережіть файл як";
+                    saveFileDialog.FileName = "document";
+
+                    if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        string filePath = saveFileDialog.FileName;
+
+                        if (filePath.EndsWith(".dat"))
+                        {
+                            using (StreamWriter writer = new StreamWriter(File.Open(filePath, FileMode.Create)))
+                            {
+                                foreach (DataGridViewRow row in MainList._dataGrid.Rows)
+                                {
+                                    if (!row.IsNewRow)
+                                    {
+                                        List<string> rowData = new List<string>();
+                                        foreach (DataGridViewCell cell in row.Cells)
+                                        {
+                                            rowData.Add(cell.Value != null ? cell.Value.ToString() : ""); // Додати пусте значення
+                                        }
+                                        writer.WriteLine(string.Join("\t", rowData));
+                                    }
+                                }
+                            }
+                        }
+                        else if (filePath.EndsWith(".txt"))
+                        {
+                            using (StreamWriter writer = new StreamWriter(File.Open(filePath, FileMode.Create)))
+                            {
+                                foreach (DataGridViewRow row in MainList._dataGrid.Rows)
+                                {
+                                    if (!row.IsNewRow)
+                                    {
+                                        List<string> rowData = new List<string>();
+                                        foreach (DataGridViewCell cell in row.Cells)
+                                        {
+                                            rowData.Add(cell.Value != null ? cell.Value.ToString() : ""); // Додати пусте значення
+                                        }
+                                        writer.WriteLine(string.Join("\t", rowData));
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        public abstract class Format
+        {
+            protected IWorkWithFile _workWithFile;
+            protected Format(IWorkWithFile workWithFile)
+            {
+                _workWithFile = workWithFile;
+            }
+            public abstract void WorkWithFile();
+        }
+        public class DAT : Format
+        {
+            public DAT(IWorkWithFile workWithFile) : base(workWithFile) { }
+            public override void WorkWithFile()
+            {
+                _workWithFile.WorkWithFile("Binnary Files (*.dat)|*.dat|All Files (*.*)|*.*");
+            }
+        }
+        public class TXT : Format
+        {
+            public TXT(IWorkWithFile workWithFile) : base(workWithFile) { }
+            public override void WorkWithFile()
+            {
+                _workWithFile.WorkWithFile("Text Files (*.txt)|*.txt|All Files (*.*)|*.*");
+            }
+        }
+
+        private void fromBinnaryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            IWorkWithFile dat = new Read();
+            Format datRead = new DAT(dat);
+            datRead.WorkWithFile();
+        }
+        private void fromtxtToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            IWorkWithFile txt = new Read();
+            Format txtRead = new TXT(txt);
+            txtRead.WorkWithFile();
+        }
+        private void todatToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            IWorkWithFile dat = new Write();
+            Format datWrite = new DAT(dat);
+            datWrite.WorkWithFile();
+        }
+        private void totxtToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            IWorkWithFile txt = new Write();
+            Format txtWrite = new TXT(txt);
+            txtWrite.WorkWithFile();
         }
     }
 }

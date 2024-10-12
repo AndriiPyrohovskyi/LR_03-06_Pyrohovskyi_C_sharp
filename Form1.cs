@@ -422,7 +422,7 @@ namespace ЛР_03_03_Пироговський
                             string[] lines = File.ReadAllLines(filePath);
                             foreach (var line in lines)
                             {
-                                string[] rowData = line.Split(new char[] { '\t' }, StringSplitOptions.None); // Залишити порожні елементи
+                                string[] rowData = line.Split(new char[] { '\t' }, StringSplitOptions.None);
                                 MainList._dataGrid.Rows.Add(rowData);
                             }
                         }
@@ -433,7 +433,7 @@ namespace ЛР_03_03_Пироговський
                                 while (!reader.EndOfStream)
                                 {
                                     string line = reader.ReadLine();
-                                    string[] rowData = line.Split(new char[] { '\t' }, StringSplitOptions.None); // Залишити порожні елементи
+                                    string[] rowData = line.Split(new char[] { '\t' }, StringSplitOptions.None);
                                     MainList._dataGrid.Rows.Add(rowData);
                                 }
                             }
@@ -469,7 +469,7 @@ namespace ЛР_03_03_Пироговський
                                         List<string> rowData = new List<string>();
                                         foreach (DataGridViewCell cell in row.Cells)
                                         {
-                                            rowData.Add(cell.Value != null ? cell.Value.ToString() : ""); // Додати пусте значення
+                                            rowData.Add(cell.Value != null ? cell.Value.ToString() : "");
                                         }
                                         writer.WriteLine(string.Join("\t", rowData));
                                     }
@@ -487,7 +487,7 @@ namespace ЛР_03_03_Пироговський
                                         List<string> rowData = new List<string>();
                                         foreach (DataGridViewCell cell in row.Cells)
                                         {
-                                            rowData.Add(cell.Value != null ? cell.Value.ToString() : ""); // Додати пусте значення
+                                            rowData.Add(cell.Value != null ? cell.Value.ToString() : "");
                                         }
                                         writer.WriteLine(string.Join("\t", rowData));
                                     }

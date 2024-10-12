@@ -1,0 +1,6 @@
+BTC	Bitcoin	62000	-1,31	3100000	20000											
+USDT	Tether	1	0	12413	1234	Стейблкоін	Dollar USA	Topchik								
+HMSTR	Hamster Combat Coin	0,003	-69,96	141	12	Шіткоін			0	0						
+SOL	Solana	145	-3,21	1352	1221	Блокчейн					Solana Blockchain	4				
+1000PEPE	Pepe Frog Coin	0,00011	-0,21	135	121	Блокчейн					Solana Blockchain	40	Мемкоін	PEPE lovers	1239324	
+NOT	Notcoin	0,009	1,21	991	124	Блокчейн					The Open Network	120	Монета			Clicker in Telegram

@@ -267,9 +267,9 @@
             this.label17.ForeColor = System.Drawing.Color.Goldenrod;
             this.label17.Location = new System.Drawing.Point(13, 612);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(98, 23);
+            this.label17.Size = new System.Drawing.Size(93, 23);
             this.label17.TabIndex = 31;
-            this.label17.Text = "Технолоігії";
+            this.label17.Text = "Технології";
             // 
             // textBox1
             // 

@@ -625,7 +625,6 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem addToolStripMenuItem;
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.DataGridView TableOfCrypto;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox Questionnaire;
@@ -667,6 +666,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn NameOfMemeCommunity;
         private System.Windows.Forms.DataGridViewTextBoxColumn NumberOfFanbase;
         private System.Windows.Forms.DataGridViewTextBoxColumn Technologies;
+        public System.Windows.Forms.DataGridView TableOfCrypto;
     }
 }
 

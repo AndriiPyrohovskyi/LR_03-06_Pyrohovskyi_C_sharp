@@ -16,5 +16,10 @@ namespace ЛР_03_03_Пироговський
         {
             InitializeComponent();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

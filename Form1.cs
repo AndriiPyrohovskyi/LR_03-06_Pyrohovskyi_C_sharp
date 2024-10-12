@@ -257,7 +257,7 @@ namespace ЛР_03_03_Пироговський
 
         private void pictureBox3_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < TableOfCrypto.Rows.Count-1; i++)
+            for (int i = 0; i < TableOfCrypto.Rows.Count; i++)
             {
                 if (MainList.ListOfCrypto[i].GetType() != typeof(StableCoin))
                 {
@@ -280,7 +280,7 @@ namespace ЛР_03_03_Пироговський
 
         private void pictureBox4_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < TableOfCrypto.Rows.Count - 1; i++)
+            for (int i = 0; i < TableOfCrypto.Rows.Count; i++)
             {
                 if (MainList.ListOfCrypto[i].GetType() != typeof(ShitCoin))
                 {
@@ -307,7 +307,7 @@ namespace ЛР_03_03_Пироговський
 
             if (result == DialogResult.Yes)
             {
-                for (int i = 0; i < TableOfCrypto.Rows.Count - 1; i++)
+                for (int i = 0; i < TableOfCrypto.Rows.Count; i++)
                 {
                     if (MainList.ListOfCrypto[i].GetType() != typeof(Blockchain) && MainList.ListOfCrypto[i].GetType() != typeof(MemeCoin) && MainList.ListOfCrypto[i].GetType() != typeof(Coins))
                     {
@@ -329,7 +329,7 @@ namespace ЛР_03_03_Пироговський
             }
             else if (result == DialogResult.No)
             {
-                for (int i = 0; i < TableOfCrypto.Rows.Count - 1; i++)
+                for (int i = 0; i < TableOfCrypto.Rows.Count; i++)
                 {
                     if (MainList.ListOfCrypto[i].GetType() != typeof(Blockchain))
                     {
@@ -353,7 +353,7 @@ namespace ЛР_03_03_Пироговський
 
         private void pictureBox6_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < TableOfCrypto.Rows.Count - 1; i++)
+            for (int i = 0; i < TableOfCrypto.Rows.Count; i++)
             {
                 if (MainList.ListOfCrypto[i].GetType() != typeof(MemeCoin))
                 {
@@ -376,7 +376,7 @@ namespace ЛР_03_03_Пироговський
 
         private void pictureBox7_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < TableOfCrypto.Rows.Count - 1; i++)
+            for (int i = 0; i < TableOfCrypto.Rows.Count; i++)
             {
                 if (MainList.ListOfCrypto[i].GetType() != typeof(Coins))
                 {
@@ -399,7 +399,7 @@ namespace ЛР_03_03_Пироговський
 
         private void button1_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < TableOfCrypto.Rows.Count - 1; i++)
+            for (int i = 0; i < TableOfCrypto.Rows.Count; i++)
             {
                 TableOfCrypto.Rows[i].Visible = true;
             }
@@ -418,7 +418,8 @@ namespace ЛР_03_03_Пироговський
 
         private void searchToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            Search search = new Search();
+            search.Show();
         }
     }
 }

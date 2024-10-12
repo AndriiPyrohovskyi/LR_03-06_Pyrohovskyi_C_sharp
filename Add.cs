@@ -115,51 +115,137 @@ namespace ЛР_03_03_Пироговський
 
         private void button1_Click(object sender, EventArgs e)
         {
+            if (!ValidateCommonFields()) return;
+
             switch (AddMenu.Type1)
             {
                 case 1:
                     {
-                        CryptoCurrency currency = new CryptoCurrency(textBox1.Text, textBox2.Text, Double.Parse(textBox3.Text), Double.Parse(textBox4.Text), Double.Parse(textBox5.Text), Double.Parse(textBox6.Text));
-                        MainMenu.MainList.add(currency);
-                        MainMenu.MainList.RefreshDataGrid();
+                        CreateCryptoCurrency();
                         break;
                     }
                 case 2:
                     {
-                        CryptoCurrency stable = new StableCoin(textBox1.Text, textBox2.Text, Double.Parse(textBox3.Text), Double.Parse(textBox4.Text), Double.Parse(textBox5.Text), Double.Parse(textBox6.Text), textBox8.Text, textBox9.Text);
-                        MainMenu.MainList.add(stable);
-                        MainMenu.MainList.RefreshDataGrid();
+                        if (!ValidateTextBoxFields(new[] { textBox8, textBox9 })) return;
+
+                        CryptoCurrency stable = new StableCoin(
+                            textBox1.Text, textBox2.Text,
+                            double.Parse(textBox3.Text), double.Parse(textBox4.Text),
+                            double.Parse(textBox5.Text), double.Parse(textBox6.Text),
+                            textBox8.Text, textBox9.Text);
+
+                        AddAndRefresh(stable);
                         break;
                     }
                 case 3:
                     {
-                        CryptoCurrency blockchain = new Blockchain(textBox1.Text, textBox2.Text, Double.Parse(textBox3.Text), Double.Parse(textBox4.Text), Double.Parse(textBox5.Text), Double.Parse(textBox6.Text), textBox8.Text, Double.Parse(textBox9.Text));
-                        MainMenu.MainList.add(blockchain);
-                        MainMenu.MainList.RefreshDataGrid();
+                        if (!ValidateTextBoxFields(new[] { textBox8 }) || !TryParseDouble(textBox9.Text)) return;
+
+                        CryptoCurrency blockchain = new Blockchain(
+                            textBox1.Text, textBox2.Text,
+                            double.Parse(textBox3.Text), double.Parse(textBox4.Text),
+                            double.Parse(textBox5.Text), double.Parse(textBox6.Text),
+                            textBox8.Text, double.Parse(textBox9.Text));
+
+                        AddAndRefresh(blockchain);
                         break;
                     }
                 case 4:
                     {
-                        CryptoCurrency shit = new ShitCoin(textBox1.Text, textBox2.Text, Double.Parse(textBox3.Text), Double.Parse(textBox4.Text), Double.Parse(textBox5.Text), Double.Parse(textBox6.Text), int.Parse(textBox8.Text), int.Parse(textBox9.Text));
-                        MainMenu.MainList.add(shit);
-                        MainMenu.MainList.RefreshDataGrid();
+                        if (!ValidateTextBoxFields(new[] { textBox8, textBox9 }) || !TryParseInt(textBox8.Text) || !TryParseInt(textBox9.Text)) return;
+
+                        CryptoCurrency shit = new ShitCoin(
+                            textBox1.Text, textBox2.Text,
+                            double.Parse(textBox3.Text), double.Parse(textBox4.Text),
+                            double.Parse(textBox5.Text), double.Parse(textBox6.Text),
+                            int.Parse(textBox8.Text), int.Parse(textBox9.Text));
+
+                        AddAndRefresh(shit);
                         break;
                     }
                 case 5:
                     {
-                        CryptoCurrency meme = new MemeCoin(textBox1.Text, textBox2.Text, Double.Parse(textBox3.Text), Double.Parse(textBox4.Text), Double.Parse(textBox5.Text), Double.Parse(textBox6.Text), textBox8.Text, Double.Parse(textBox9.Text), textBox10.Text, int.Parse(textBox11.Text));
-                        MainMenu.MainList.add(meme);
-                        MainMenu.MainList.RefreshDataGrid();
+                        if (!ValidateTextBoxFields(new[] { textBox8, textBox9, textBox10, textBox11 }) ||
+                            !TryParseDouble(textBox9.Text) || !TryParseInt(textBox11.Text)) return;
+
+                        CryptoCurrency meme = new MemeCoin(
+                            textBox1.Text, textBox2.Text,
+                            double.Parse(textBox3.Text), double.Parse(textBox4.Text),
+                            double.Parse(textBox5.Text), double.Parse(textBox6.Text),
+                            textBox8.Text, double.Parse(textBox9.Text),
+                            textBox10.Text, int.Parse(textBox11.Text));
+
+                        AddAndRefresh(meme);
                         break;
                     }
                 case 6:
                     {
-                        CryptoCurrency coin = new Coins(textBox1.Text, textBox2.Text, Double.Parse(textBox3.Text), Double.Parse(textBox4.Text), Double.Parse(textBox5.Text), Double.Parse(textBox6.Text), textBox8.Text, Double.Parse(textBox9.Text), textBox10.Text);
-                        MainMenu.MainList.add(coin);
-                        MainMenu.MainList.RefreshDataGrid();
+                        if (!ValidateTextBoxFields(new[] { textBox8, textBox9, textBox10 }) || !TryParseDouble(textBox9.Text)) return;
+
+                        CryptoCurrency coin = new Coins(
+                            textBox1.Text, textBox2.Text,
+                            double.Parse(textBox3.Text), double.Parse(textBox4.Text),
+                            double.Parse(textBox5.Text), double.Parse(textBox6.Text),
+                            textBox8.Text, double.Parse(textBox9.Text), textBox10.Text);
+
+                        AddAndRefresh(coin);
                         break;
                     }
             }
         }
+        private bool ValidateCommonFields()
+        {
+            if (textBox1.Text == string.Empty || textBox2.Text == string.Empty ||
+                textBox3.Text == string.Empty || textBox4.Text == string.Empty ||
+                textBox5.Text == string.Empty || textBox6.Text == string.Empty)
+            {
+                MessageBox.Show("Введіть всі дані.", "Помилка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            if (!TryParseDoubles(new[] { textBox3, textBox4, textBox5, textBox6 }))
+            {
+                MessageBox.Show("Дані введені неправильно.", "Помилка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            return true;
+        }
+        private bool ValidateTextBoxFields(TextBox[] fields)
+        {
+            foreach (var field in fields)
+            {
+                if (field.Text == string.Empty)
+                {
+                    MessageBox.Show("Введіть всі дані.", "Помилка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+            }
+            return true;
+        }
+        private bool TryParseDoubles(TextBox[] fields)
+        {
+            foreach (var field in fields)
+            {
+                if (!double.TryParse(field.Text, out _))
+                    return false;
+            }
+            return true;
+        }
+        private bool TryParseDouble(string text) => double.TryParse(text, out _);
+        private bool TryParseInt(string text) => int.TryParse(text, out _);
+
+        private void AddAndRefresh(CryptoCurrency currency)
+        {
+            MainMenu.MainList.add(currency);
+            MainMenu.MainList.RefreshDataGrid();
+        }
+        private void CreateCryptoCurrency()
+        {
+            CryptoCurrency currency = new CryptoCurrency(
+                textBox1.Text, textBox2.Text,
+                double.Parse(textBox3.Text), double.Parse(textBox4.Text),
+                double.Parse(textBox5.Text), double.Parse(textBox6.Text));
+            AddAndRefresh(currency);
+        }
+
     }
 }

@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.Questionnaire = new System.Windows.Forms.PictureBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
@@ -43,17 +42,9 @@
             this.button1 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.textBox12 = new System.Windows.Forms.TextBox();
+            this.Questionnaire = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.Questionnaire)).BeginInit();
             this.SuspendLayout();
-            // 
-            // Questionnaire
-            // 
-            this.Questionnaire.Image = global::ЛР_03_03_Пироговський.Properties.Resources.questionnaire7;
-            this.Questionnaire.Location = new System.Drawing.Point(-7, -19);
-            this.Questionnaire.Name = "Questionnaire";
-            this.Questionnaire.Size = new System.Drawing.Size(489, 755);
-            this.Questionnaire.TabIndex = 1;
-            this.Questionnaire.TabStop = false;
             // 
             // textBox1
             // 
@@ -70,6 +61,7 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(303, 30);
             this.textBox2.TabIndex = 3;
+            this.textBox2.Tag = "";
             // 
             // textBox3
             // 
@@ -172,6 +164,15 @@
             this.textBox12.Name = "textBox12";
             this.textBox12.Size = new System.Drawing.Size(151, 30);
             this.textBox12.TabIndex = 15;
+            // 
+            // Questionnaire
+            // 
+            this.Questionnaire.Image = global::ЛР_03_03_Пироговський.Properties.Resources.questionnaire7;
+            this.Questionnaire.Location = new System.Drawing.Point(-7, -19);
+            this.Questionnaire.Name = "Questionnaire";
+            this.Questionnaire.Size = new System.Drawing.Size(489, 755);
+            this.Questionnaire.TabIndex = 1;
+            this.Questionnaire.TabStop = false;
             // 
             // Add
             // 

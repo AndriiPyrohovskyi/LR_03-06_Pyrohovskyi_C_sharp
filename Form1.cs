@@ -211,8 +211,10 @@ namespace ЛР_03_03_Пироговський
                     label13.Text = TableOfCrypto.Rows[e.RowIndex].Cells[13].Value.ToString();
                 }
             }
+            // test command
             catch (IndexOutOfRangeException ex)
             {
+
             }
             catch (Exception ex)
             {

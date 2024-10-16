@@ -4,10 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
+using ЛР_03_03_Пироговський.Classes;
 
 namespace ЛР_03_03_Пироговський
 {
-    public class StableCoin : CryptoCurrency
+    public class StableCoin : CryptoCurrency, IValidatable
     {
         public string TypeOfCrypto { get; set; }
         public string ConnectionWithActive { get; set; }
@@ -40,6 +42,10 @@ namespace ЛР_03_03_Пироговський
             row.Cells[6].Value = "Стейблкоін";
             row.Cells[7].Value = ConnectionWithActive;
             row.Cells[8].Value = StabilizationMechanizm;
+        }
+        public bool Validate()
+        {
+            return PriceChange24H == 0;
         }
     }
 }

@@ -2,12 +2,19 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using System.Net.Http;
+using System.Threading.Tasks;
 using System.Windows.Forms;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace ЛР_03_03_Пироговський
 {
     public partial class MainMenu : Form
     {
+        public static string SelectedCrypto = "";
+        public static string SelectedCryptoType = "";
+        public static int SelectedRow = 0;
         public static CryptoData MainList = new CryptoData();
         public void Starter()
         {
@@ -124,6 +131,8 @@ namespace ЛР_03_03_Пироговський
         }
         private void TableOfCrypto_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            SelectedRow = e.RowIndex;
+            SelectedCrypto = TableOfCrypto.Rows[e.RowIndex].Cells[0].Value.ToString();
             try
             {
                 if (e.RowIndex < 0 || e.RowIndex >= MainList.ListOfCrypto.Count)
@@ -132,6 +141,7 @@ namespace ЛР_03_03_Пироговський
                 }
                 if (MainList.ListOfCrypto[e.RowIndex].GetType() == typeof(CryptoCurrency))
                 {
+                    SelectedCryptoType = "CryptoCurrency";
                     CryptoPositions();
                     label1.Text = TableOfCrypto.Rows[e.RowIndex].Cells[0].Value.ToString();
                     label2.Text = TableOfCrypto.Rows[e.RowIndex].Cells[1].Value.ToString();
@@ -142,6 +152,7 @@ namespace ЛР_03_03_Пироговський
                 }
                 if (MainList.ListOfCrypto[e.RowIndex].GetType() == typeof(StableCoin))
                 {
+                    SelectedCryptoType = "StableCoin";
                     StablePositions();
                     label1.Text = TableOfCrypto.Rows[e.RowIndex].Cells[0].Value.ToString();
                     label2.Text = TableOfCrypto.Rows[e.RowIndex].Cells[1].Value.ToString();
@@ -155,6 +166,7 @@ namespace ЛР_03_03_Пироговський
                 }
                 if (MainList.ListOfCrypto[e.RowIndex].GetType() == typeof(ShitCoin))
                 {
+                    SelectedCryptoType = "ShitCoin";
                     ShitPositions();
                     label1.Text = TableOfCrypto.Rows[e.RowIndex].Cells[0].Value.ToString();
                     label2.Text = TableOfCrypto.Rows[e.RowIndex].Cells[1].Value.ToString();
@@ -168,6 +180,7 @@ namespace ЛР_03_03_Пироговський
                 }
                 if (MainList.ListOfCrypto[e.RowIndex].GetType() == typeof(Blockchain))
                 {
+                    SelectedCryptoType = "Blockchain";
                     BlockchainPositions();
                     label1.Text = TableOfCrypto.Rows[e.RowIndex].Cells[0].Value.ToString();
                     label2.Text = TableOfCrypto.Rows[e.RowIndex].Cells[1].Value.ToString();
@@ -181,6 +194,7 @@ namespace ЛР_03_03_Пироговський
                 }
                 if (MainList.ListOfCrypto[e.RowIndex].GetType() == typeof(MemeCoin))
                 {
+                    SelectedCryptoType = "MemeCoin";
                     MemePositions();
                     label1.Text = TableOfCrypto.Rows[e.RowIndex].Cells[0].Value.ToString();
                     label2.Text = TableOfCrypto.Rows[e.RowIndex].Cells[1].Value.ToString();
@@ -197,6 +211,7 @@ namespace ЛР_03_03_Пироговський
                 }
                 if (MainList.ListOfCrypto[e.RowIndex].GetType() == typeof(Coins))
                 {
+                    SelectedCryptoType = "Coins";
                     CoinPositions();
                     label1.Text = TableOfCrypto.Rows[e.RowIndex].Cells[0].Value.ToString();
                     label2.Text = TableOfCrypto.Rows[e.RowIndex].Cells[1].Value.ToString();
@@ -402,10 +417,6 @@ namespace ЛР_03_03_Пироговський
             Search search = new Search();
             search.Show();
         }
-        public interface IWorkWithFile
-        {
-            void WorkWithFile(string format);
-        }
         public class Read : IWorkWithFile
         {
             public void WorkWithFile(string format)
@@ -500,7 +511,10 @@ namespace ЛР_03_03_Пироговський
                 }
             }
         }
-
+        public interface IWorkWithFile
+        {
+            void WorkWithFile(string format);
+        }
         public abstract class Format
         {
             protected IWorkWithFile _workWithFile;
@@ -550,6 +564,64 @@ namespace ЛР_03_03_Пироговський
             IWorkWithFile txt = new Write();
             Format txtWrite = new TXT(txt);
             txtWrite.WorkWithFile();
+        }
+
+        private async void button2_Click(object sender, EventArgs e)
+        {
+            string info = await Get24HrMarketInfo(SelectedCrypto + "USDT");
+            if (info != "")
+                MessageBox.Show(info, "Інформація за 24 години");
+        }
+
+        private async Task<string> Get24HrMarketInfo(string symbol)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                try
+                {
+                    string url = $"https://api.binance.com/api/v3/ticker/24hr?symbol={symbol}";
+                    HttpResponseMessage response = await client.GetAsync(url);
+
+                    response.EnsureSuccessStatusCode();
+
+                    string responseData = await response.Content.ReadAsStringAsync();
+                    JObject json = JObject.Parse(responseData);
+
+                    string info = $"Остання ціна: {json["lastPrice"].ToString()}\n" +
+                                  $"Відкриваюча ціна: {json["openPrice"].ToString()}\n" +
+                                  $"Максимальна ціна: {json["highPrice"].ToString()}\n" +
+                                  $"Мінімальна ціна: {json["lowPrice"].ToString()}\n" +
+                                  $"Об'єм: {json["volume"].ToString()}\n" +
+                                  $"Зміна ціни: {json["priceChangePercent"].ToString()}%";
+                    return info;
+                }
+                catch (HttpRequestException httpEx)
+                {
+                    MessageBox.Show($"Помилка HTTP: {httpEx.Message}", "Помилка");
+                }
+                catch (JsonReaderException jsonEx)
+                {
+                    MessageBox.Show($"Помилка обробки JSON: {jsonEx.Message}", "Помилка");
+                }
+                catch (TaskCanceledException timeoutEx)
+                {
+                    MessageBox.Show($"Час очікування вичерпано: {timeoutEx.Message}", "Помилка");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Неочікувана помилка: {ex.Message}", "Помилка");
+                }
+                return "";
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (SelectedCryptoType == "StableCoin")
+            {
+                if (MainList.ListOfCrypto[SelectedRow].Validate()) MessageBox.Show("Стейблкоін стабільний.", "Успіх.");
+                else MessageBox.Show("Стейблкоін нестабільний.", "Успіх.");
+            }
         }
     }
 }

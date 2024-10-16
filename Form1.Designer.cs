@@ -29,6 +29,10 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainMenu));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.searchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -40,6 +44,7 @@
             this.todatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.totxtToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.button3 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
@@ -67,6 +72,7 @@
             this.NameOfMemeCommunity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NumberOfFanbase = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Technologies = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.button2 = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
@@ -110,21 +116,21 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1924, 30);
+            this.menuStrip1.Size = new System.Drawing.Size(1924, 28);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // addToolStripMenuItem
             // 
             this.addToolStripMenuItem.Name = "addToolStripMenuItem";
-            this.addToolStripMenuItem.Size = new System.Drawing.Size(51, 26);
+            this.addToolStripMenuItem.Size = new System.Drawing.Size(51, 24);
             this.addToolStripMenuItem.Text = "Add";
             this.addToolStripMenuItem.Click += new System.EventHandler(this.addToolStripMenuItem_Click);
             // 
             // searchToolStripMenuItem
             // 
             this.searchToolStripMenuItem.Name = "searchToolStripMenuItem";
-            this.searchToolStripMenuItem.Size = new System.Drawing.Size(67, 26);
+            this.searchToolStripMenuItem.Size = new System.Drawing.Size(67, 24);
             this.searchToolStripMenuItem.Text = "Search";
             this.searchToolStripMenuItem.Click += new System.EventHandler(this.searchToolStripMenuItem_Click);
             // 
@@ -134,7 +140,7 @@
             this.readToolStripMenuItem,
             this.writeToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(46, 26);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(46, 24);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // readToolStripMenuItem
@@ -186,17 +192,19 @@
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 30);
+            this.splitContainer1.Location = new System.Drawing.Point(0, 28);
             this.splitContainer1.Margin = new System.Windows.Forms.Padding(4);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.button3);
             this.splitContainer1.Panel1.Controls.Add(this.panel1);
             this.splitContainer1.Panel1.Controls.Add(this.TableOfCrypto);
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.button2);
             this.splitContainer1.Panel2.Controls.Add(this.label9);
             this.splitContainer1.Panel2.Controls.Add(this.label13);
             this.splitContainer1.Panel2.Controls.Add(this.label12);
@@ -211,10 +219,20 @@
             this.splitContainer1.Panel2.Controls.Add(this.label2);
             this.splitContainer1.Panel2.Controls.Add(this.label1);
             this.splitContainer1.Panel2.Controls.Add(this.Questionnaire);
-            this.splitContainer1.Size = new System.Drawing.Size(1924, 1010);
+            this.splitContainer1.Size = new System.Drawing.Size(1924, 1012);
             this.splitContainer1.SplitterDistance = 1299;
             this.splitContainer1.SplitterWidth = 5;
             this.splitContainer1.TabIndex = 1;
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(556, 603);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(196, 38);
+            this.button3.TabIndex = 18;
+            this.button3.Text = "Перевірити стейблкоін";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // panel1
             // 
@@ -323,8 +341,27 @@
             // TableOfCrypto
             // 
             this.TableOfCrypto.AllowUserToAddRows = false;
-            this.TableOfCrypto.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            this.TableOfCrypto.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.TableOfCrypto.AllowUserToResizeRows = false;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.Black;
+            this.TableOfCrypto.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle9;
+            this.TableOfCrypto.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.TableOfCrypto.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(232)))));
+            this.TableOfCrypto.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TableOfCrypto.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.TableOfCrypto.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.TableOfCrypto.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            this.TableOfCrypto.ColumnHeadersHeight = 71;
             this.TableOfCrypto.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ShortName,
             this.FullName,
@@ -343,12 +380,31 @@
             this.NameOfMemeCommunity,
             this.NumberOfFanbase,
             this.Technologies});
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(202)))), ((int)(((byte)(244)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.TableOfCrypto.DefaultCellStyle = dataGridViewCellStyle11;
+            this.TableOfCrypto.EnableHeadersVisualStyles = false;
             this.TableOfCrypto.GridColor = System.Drawing.Color.Black;
-            this.TableOfCrypto.Location = new System.Drawing.Point(4, 4);
+            this.TableOfCrypto.Location = new System.Drawing.Point(0, 0);
             this.TableOfCrypto.Margin = new System.Windows.Forms.Padding(4);
             this.TableOfCrypto.Name = "TableOfCrypto";
             this.TableOfCrypto.ReadOnly = true;
+            this.TableOfCrypto.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(202)))), ((int)(((byte)(244)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.Purple;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(202)))), ((int)(((byte)(244)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.TableOfCrypto.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
             this.TableOfCrypto.RowHeadersWidth = 51;
+            this.TableOfCrypto.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.TableOfCrypto.Size = new System.Drawing.Size(1379, 650);
             this.TableOfCrypto.TabIndex = 0;
             this.TableOfCrypto.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.TableOfCrypto_CellClick);
@@ -360,7 +416,6 @@
             this.ShortName.Name = "ShortName";
             this.ShortName.ReadOnly = true;
             this.ShortName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ShortName.Width = 50;
             // 
             // FullName
             // 
@@ -369,7 +424,6 @@
             this.FullName.Name = "FullName";
             this.FullName.ReadOnly = true;
             this.FullName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.FullName.Width = 70;
             // 
             // LastPrice
             // 
@@ -378,7 +432,6 @@
             this.LastPrice.Name = "LastPrice";
             this.LastPrice.ReadOnly = true;
             this.LastPrice.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.LastPrice.Width = 55;
             // 
             // PriceChangePer24H
             // 
@@ -387,7 +440,6 @@
             this.PriceChangePer24H.Name = "PriceChangePer24H";
             this.PriceChangePer24H.ReadOnly = true;
             this.PriceChangePer24H.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.PriceChangePer24H.Width = 70;
             // 
             // Capitalization
             // 
@@ -396,7 +448,6 @@
             this.Capitalization.Name = "Capitalization";
             this.Capitalization.ReadOnly = true;
             this.Capitalization.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Capitalization.Width = 80;
             // 
             // VolumePer24H
             // 
@@ -406,7 +457,6 @@
             this.VolumePer24H.Name = "VolumePer24H";
             this.VolumePer24H.ReadOnly = true;
             this.VolumePer24H.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.VolumePer24H.Width = 75;
             // 
             // TypeOfCrypto
             // 
@@ -415,7 +465,6 @@
             this.TypeOfCrypto.Name = "TypeOfCrypto";
             this.TypeOfCrypto.ReadOnly = true;
             this.TypeOfCrypto.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.TypeOfCrypto.Width = 90;
             // 
             // ConectionWithActive
             // 
@@ -424,7 +473,6 @@
             this.ConectionWithActive.Name = "ConectionWithActive";
             this.ConectionWithActive.ReadOnly = true;
             this.ConectionWithActive.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ConectionWithActive.Width = 65;
             // 
             // StabilizationMechanizm
             // 
@@ -434,7 +482,6 @@
             this.StabilizationMechanizm.Name = "StabilizationMechanizm";
             this.StabilizationMechanizm.ReadOnly = true;
             this.StabilizationMechanizm.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.StabilizationMechanizm.Width = 80;
             // 
             // RiskLevel
             // 
@@ -443,7 +490,6 @@
             this.RiskLevel.Name = "RiskLevel";
             this.RiskLevel.ReadOnly = true;
             this.RiskLevel.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.RiskLevel.Width = 55;
             // 
             // ReliabilityOfDevelopers
             // 
@@ -453,7 +499,6 @@
             this.ReliabilityOfDevelopers.Name = "ReliabilityOfDevelopers";
             this.ReliabilityOfDevelopers.ReadOnly = true;
             this.ReliabilityOfDevelopers.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ReliabilityOfDevelopers.Width = 90;
             // 
             // BlockchainName
             // 
@@ -462,7 +507,6 @@
             this.BlockchainName.Name = "BlockchainName";
             this.BlockchainName.ReadOnly = true;
             this.BlockchainName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.BlockchainName.Width = 75;
             // 
             // TranzactionSpeed
             // 
@@ -472,7 +516,6 @@
             this.TranzactionSpeed.Name = "TranzactionSpeed";
             this.TranzactionSpeed.ReadOnly = true;
             this.TranzactionSpeed.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.TranzactionSpeed.Width = 80;
             // 
             // TypeOfCryptoBasedOnBlockchain
             // 
@@ -481,7 +524,6 @@
             this.TypeOfCryptoBasedOnBlockchain.Name = "TypeOfCryptoBasedOnBlockchain";
             this.TypeOfCryptoBasedOnBlockchain.ReadOnly = true;
             this.TypeOfCryptoBasedOnBlockchain.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.TypeOfCryptoBasedOnBlockchain.Width = 95;
             // 
             // NameOfMemeCommunity
             // 
@@ -490,7 +532,6 @@
             this.NameOfMemeCommunity.Name = "NameOfMemeCommunity";
             this.NameOfMemeCommunity.ReadOnly = true;
             this.NameOfMemeCommunity.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.NameOfMemeCommunity.Width = 75;
             // 
             // NumberOfFanbase
             // 
@@ -500,7 +541,6 @@
             this.NumberOfFanbase.Name = "NumberOfFanbase";
             this.NumberOfFanbase.ReadOnly = true;
             this.NumberOfFanbase.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.NumberOfFanbase.Width = 75;
             // 
             // Technologies
             // 
@@ -509,7 +549,16 @@
             this.Technologies.Name = "Technologies";
             this.Technologies.ReadOnly = true;
             this.Technologies.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Technologies.Width = 75;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(336, 75);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(133, 38);
+            this.button2.TabIndex = 17;
+            this.button2.Text = "button2";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // label9
             // 
@@ -771,6 +820,9 @@
         private System.Windows.Forms.ToolStripMenuItem totxtToolStripMenuItem;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
+        private Guna.UI2.WinForms.Guna2DataGridViewStyler guna2DataGridViewStyler1;
     }
 }
 

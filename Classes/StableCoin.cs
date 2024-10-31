@@ -9,6 +9,7 @@ using ЛР_03_03_Пироговський.Classes;
 
 namespace ЛР_03_03_Пироговський
 {
+    [Serializable]
     public class StableCoin : CryptoCurrency, IValidatable
     {
         public string TypeOfCrypto { get; set; }

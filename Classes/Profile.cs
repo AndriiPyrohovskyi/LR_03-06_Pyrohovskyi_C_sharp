@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace ЛР_03_03_Пироговський.Classes
 {
+    [Serializable]
     internal class Profile
     {
         public string FullName { get; private set; }

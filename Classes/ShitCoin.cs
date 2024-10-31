@@ -7,8 +7,9 @@ using System.Windows.Forms;
 
 namespace ЛР_03_03_Пироговський
 {
+    [Serializable]
     public class ShitCoin : CryptoCurrency
-    {
+    { 
         public string TypeOfCrypto { get; set; }
         public int RiskLevel { get; set; }
         public int ReliabilityOfDevelopers { get; set; }

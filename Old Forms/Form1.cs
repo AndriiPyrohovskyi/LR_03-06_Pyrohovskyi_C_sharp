@@ -1,21 +1,17 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace ЛР_03_03_Пироговський
 {
     public partial class MainMenu : Form
     {
-        public static string SelectedCrypto = "";
-        public static string SelectedCryptoType = "";
-        public static int SelectedRow = 0;
-        public static CryptoData MainList = new CryptoData();
         public void Starter()
         {
             label1.Parent = Questionnaire;
@@ -124,6 +120,10 @@ namespace ЛР_03_03_Пироговський
             Starter();
             MainList._dataGrid = TableOfCrypto;
         }
+        public static string SelectedCrypto = "";
+        public static string SelectedCryptoType = "";
+        public static int SelectedRow = 0;
+        public static CryptoData MainList = new CryptoData();
         private void addToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AddMenu addMenu = new AddMenu();
@@ -428,35 +428,57 @@ namespace ЛР_03_03_Пироговський
 
                     if (openFileDialog.ShowDialog() == DialogResult.OK)
                     {
-                        string filePath = openFileDialog.FileName;
-
-                        if (filePath.EndsWith(".txt"))
+                        try
                         {
-                            string[] lines = File.ReadAllLines(filePath);
-                            foreach (var line in lines)
+                            string filePath = openFileDialog.FileName;
+                            if (filePath.EndsWith(".txt"))
                             {
-                                string[] rowData = line.Split(new char[] { '\t' }, StringSplitOptions.None);
-                                MainList._dataGrid.Rows.Add(rowData);
+                                ReadTxtFile(filePath);
+                            }
+                            else if (filePath.EndsWith(".json"))
+                            {
+                                ReadJsonFile(filePath);
                             }
                         }
-                        else if (filePath.EndsWith(".dat"))
+                        catch (Exception ex)
                         {
-                            using (StreamReader reader = new StreamReader(File.Open(filePath, FileMode.Open)))
-                            {
-                                while (!reader.EndOfStream)
-                                {
-                                    string line = reader.ReadLine();
-                                    string[] rowData = line.Split(new char[] { '\t' }, StringSplitOptions.None);
-                                    MainList._dataGrid.Rows.Add(rowData);
-                                }
-                            }
+                            MessageBox.Show($"Помилка при читанні файлу: {ex.Message}");
                         }
                     }
                 }
                 MainList.AllocateList();
                 MainList.RefreshDataGrid();
             }
+
+            private void ReadTxtFile(string filePath)
+            {
+                string[] lines = File.ReadAllLines(filePath);
+                foreach (var line in lines)
+                {
+                    string[] rowData = line.Split('\t');
+                    MainList._dataGrid.Rows.Add(rowData);
+                }
+            }
+            private void ReadJsonFile(string filePath)
+            {
+                try
+                {
+                    string json = File.ReadAllText(filePath);
+                    var cryptoList = JsonConvert.DeserializeObject<List<CryptoCurrency>>(json);
+
+                    if (cryptoList != null)
+                    {
+                        MainList.ListOfCrypto.Clear();
+                        MainList.ListOfCrypto.AddRange(cryptoList);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Помилка при читанні JSON: {ex.Message}");
+                }
+            }
         }
+
         public class Write : IWorkWithFile
         {
             public void WorkWithFile(string format)
@@ -469,110 +491,122 @@ namespace ЛР_03_03_Пироговський
 
                     if (saveFileDialog.ShowDialog() == DialogResult.OK)
                     {
-                        string filePath = saveFileDialog.FileName;
-
-                        if (filePath.EndsWith(".dat"))
+                        try
                         {
-                            using (StreamWriter writer = new StreamWriter(File.Open(filePath, FileMode.Create)))
+                            string filePath = saveFileDialog.FileName;
+                            if (filePath.EndsWith(".json"))
                             {
-                                foreach (DataGridViewRow row in MainList._dataGrid.Rows)
-                                {
-                                    if (!row.IsNewRow)
-                                    {
-                                        List<string> rowData = new List<string>();
-                                        foreach (DataGridViewCell cell in row.Cells)
-                                        {
-                                            rowData.Add(cell.Value != null ? cell.Value.ToString() : "");
-                                        }
-                                        writer.WriteLine(string.Join("\t", rowData));
-                                    }
-                                }
+                                WriteJsonFile(filePath);
+                            }
+                            else if (filePath.EndsWith(".txt"))
+                            {
+                                WriteTxtFile(filePath);
                             }
                         }
-                        else if (filePath.EndsWith(".txt"))
+                        catch (Exception ex)
                         {
-                            using (StreamWriter writer = new StreamWriter(File.Open(filePath, FileMode.Create)))
+                            MessageBox.Show($"Помилка при збереженні файлу: {ex.Message}");
+                        }
+                    }
+                }
+            }
+            private void WriteJsonFile(string filePath)
+            {
+                try
+                {
+                    string json = JsonConvert.SerializeObject(MainList.ListOfCrypto, Formatting.Indented);
+                    File.WriteAllText(filePath, json);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Помилка при збереженні JSON: {ex.Message}");
+                }
+            }
+            private void WriteTxtFile(string filePath)
+            {
+                using (StreamWriter writer = new StreamWriter(filePath))
+                {
+                    foreach (DataGridViewRow row in MainList._dataGrid.Rows)
+                    {
+                        if (!row.IsNewRow)
+                        {
+                            List<string> rowData = new List<string>();
+                            foreach (DataGridViewCell cell in row.Cells)
                             {
-                                foreach (DataGridViewRow row in MainList._dataGrid.Rows)
-                                {
-                                    if (!row.IsNewRow)
-                                    {
-                                        List<string> rowData = new List<string>();
-                                        foreach (DataGridViewCell cell in row.Cells)
-                                        {
-                                            rowData.Add(cell.Value != null ? cell.Value.ToString() : "");
-                                        }
-                                        writer.WriteLine(string.Join("\t", rowData));
-                                    }
-                                }
+                                rowData.Add(cell.Value?.ToString() ?? string.Empty);
                             }
+                            writer.WriteLine(string.Join("\t", rowData));
                         }
                     }
                 }
             }
         }
+
         public interface IWorkWithFile
         {
             void WorkWithFile(string format);
         }
+
         public abstract class Format
         {
             protected IWorkWithFile _workWithFile;
+
             protected Format(IWorkWithFile workWithFile)
             {
                 _workWithFile = workWithFile;
             }
+
             public abstract void WorkWithFile();
         }
-        public class DAT : Format
+
+        public class JSON : Format
         {
-            public DAT(IWorkWithFile workWithFile) : base(workWithFile) { }
+            public JSON(IWorkWithFile workWithFile) : base(workWithFile) { }
+
             public override void WorkWithFile()
             {
-                _workWithFile.WorkWithFile("Binnary Files (*.dat)|*.dat|All Files (*.*)|*.*");
+                _workWithFile.WorkWithFile("JSON Files (*.json)|*.json|All Files (*.*)|*.*");
             }
         }
+
         public class TXT : Format
         {
             public TXT(IWorkWithFile workWithFile) : base(workWithFile) { }
+
             public override void WorkWithFile()
             {
                 _workWithFile.WorkWithFile("Text Files (*.txt)|*.txt|All Files (*.*)|*.*");
             }
         }
-
-        private void fromBinnaryToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ExecuteFileOperation(Format format)
         {
-            IWorkWithFile dat = new Read();
-            Format datRead = new DAT(dat);
-            datRead.WorkWithFile();
+            format.WorkWithFile();
         }
-        private void fromtxtToolStripMenuItem_Click(object sender, EventArgs e)
+        private void toJSONToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-            IWorkWithFile txt = new Read();
-            Format txtRead = new TXT(txt);
-            txtRead.WorkWithFile();
-        }
-        private void todatToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            IWorkWithFile dat = new Write();
-            Format datWrite = new DAT(dat);
-            datWrite.WorkWithFile();
-        }
-        private void totxtToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            IWorkWithFile txt = new Write();
-            Format txtWrite = new TXT(txt);
-            txtWrite.WorkWithFile();
+            ExecuteFileOperation(new JSON(new Write()));
         }
 
+        private void toTXTToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            ExecuteFileOperation(new TXT(new Write()));
+        }
+
+        private void fromJSONToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            ExecuteFileOperation(new JSON(new Read()));
+        }
+
+        private void fromTXTToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            ExecuteFileOperation(new TXT(new Read()));
+        }
         private async void button2_Click(object sender, EventArgs e)
         {
             string info = await Get24HrMarketInfo(SelectedCrypto + "USDT");
             if (info != "")
                 MessageBox.Show(info, "Інформація за 24 години");
         }
-
         private async Task<string> Get24HrMarketInfo(string symbol)
         {
             using (HttpClient client = new HttpClient())
@@ -614,7 +648,6 @@ namespace ЛР_03_03_Пироговський
                 return "";
             }
         }
-
         private void button3_Click(object sender, EventArgs e)
         {
             if (SelectedCryptoType == "StableCoin")

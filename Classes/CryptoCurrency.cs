@@ -8,6 +8,7 @@ using ЛР_03_03_Пироговський.Classes;
 
 namespace ЛР_03_03_Пироговський
 {
+    [Serializable]
     public class CryptoCurrency : ICrypto, IValidatable
     {
         public string ShortName { get; set; }

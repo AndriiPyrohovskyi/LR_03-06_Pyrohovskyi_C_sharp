@@ -3,23 +3,33 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using ЛР_03_03_Пироговський;
-
+[Serializable]
 public class CryptoData
 {
     public CryptoData()
     {
     }
-    public List<CryptoCurrency> ListOfCrypto { set; get; } = new List<CryptoCurrency>();
-    public DataGridView _dataGrid { set; get; } = new DataGridView();
+
+    public List<CryptoCurrency> ListOfCrypto { get; set; } = new List<CryptoCurrency>();
+    public DataGridView _dataGrid { get; set; } = new DataGridView();    
 
     delegate CryptoCurrency delType(string[] values, DataGridViewRow row);
     delegate bool delMatch(string[] values, int[] nonEmpty, int[] empty);
     delegate double delParseDouble(object value);
     delegate int delParseInt(object value);
+
     delType GetCryptoType = DetermineCryptoType;
+
+    public delegate void CryptoAddedEventHandler(CryptoCurrency newCrypto);
+    public delegate void DataGridRefreshedEventHandler();
+    public event CryptoAddedEventHandler CryptoAdded;
+    public event DataGridRefreshedEventHandler DataGridRefreshed;
+    //event 1 - add crypto
+    //event 2 - refresh
     public void add(CryptoCurrency item)
     {
         ListOfCrypto.Add(item);
+        CryptoAdded?.Invoke(item);
     }
     public void AllocateList()
     {
@@ -29,7 +39,11 @@ public class CryptoData
                                        .Select(cell => cell.Value?.ToString() ?? "")
                                        .ToArray();
 
-            ListOfCrypto.Add(GetCryptoType(values, row));
+            var crypto = GetCryptoType(values, row);
+            if (crypto != null)
+            {
+                add(crypto);
+            }
         }
     }
 
@@ -38,6 +52,7 @@ public class CryptoData
         delMatch match = IsMatch;
         delParseDouble parseDouble = ParseDouble;
         delParseInt parseInt = ParseInt;
+
         if (match(values, nonEmpty: new[] { 0, 1, 2, 3, 4, 5 }, empty: new[] { 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 }))
             return new CryptoCurrency(
                 row.Cells[0].Value?.ToString() ?? "",
@@ -53,9 +68,9 @@ public class CryptoData
                 row.Cells[0].Value?.ToString() ?? "",
                 row.Cells[1].Value?.ToString() ?? "",
                 parseDouble(row.Cells[2].Value),
-                ParseDouble(row.Cells[3].Value),
+                parseDouble(row.Cells[3].Value),
                 parseDouble(row.Cells[4].Value),
-                ParseDouble(row.Cells[5].Value),
+                parseDouble(row.Cells[5].Value),
                 row.Cells[7].Value?.ToString() ?? "",
                 row.Cells[8].Value?.ToString() ?? ""
             );
@@ -67,7 +82,7 @@ public class CryptoData
                 parseDouble(row.Cells[2].Value),
                 parseDouble(row.Cells[3].Value),
                 parseDouble(row.Cells[4].Value),
-                ParseDouble(row.Cells[5].Value),
+                parseDouble(row.Cells[5].Value),
                 parseInt(row.Cells[9].Value),
                 parseInt(row.Cells[10].Value)
             );
@@ -113,6 +128,7 @@ public class CryptoData
 
         return null;
     }
+
     private static bool IsMatch(string[] values, int[] nonEmpty, int[] empty)
     {
         return nonEmpty.All(index => !string.IsNullOrEmpty(values[index])) &&
@@ -128,7 +144,6 @@ public class CryptoData
     {
         return int.TryParse(value?.ToString(), out int result) ? result : 0;
     }
-
     public void RefreshDataGrid()
     {
         _dataGrid.Rows.Clear();
@@ -137,5 +152,6 @@ public class CryptoData
             _dataGrid.Rows.Add();
             ListOfCrypto[i].FillDataGridRow(_dataGrid.Rows[i]);
         }
+        DataGridRefreshed?.Invoke();
     }
 }

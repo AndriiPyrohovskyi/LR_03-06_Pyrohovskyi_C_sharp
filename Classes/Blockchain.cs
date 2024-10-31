@@ -7,6 +7,7 @@ using System.Windows.Forms;
 
 namespace ЛР_03_03_Пироговський
 {
+    [Serializable]
     public class Blockchain : CryptoCurrency
     {
         public string TypeOfCrypto { get; set; }

@@ -29,14 +29,20 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainMenu));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.searchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.writeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toJSONToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toTXTToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.readToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fromJSONToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fromTXTToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.button3 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -83,12 +89,6 @@
             this.Questionnaire = new System.Windows.Forms.PictureBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.writeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.readToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toJSONToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toTXTToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.fromJSONToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.fromTXTToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -116,21 +116,21 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1924, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1924, 30);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // addToolStripMenuItem
             // 
             this.addToolStripMenuItem.Name = "addToolStripMenuItem";
-            this.addToolStripMenuItem.Size = new System.Drawing.Size(51, 24);
+            this.addToolStripMenuItem.Size = new System.Drawing.Size(51, 26);
             this.addToolStripMenuItem.Text = "Add";
             this.addToolStripMenuItem.Click += new System.EventHandler(this.addToolStripMenuItem_Click);
             // 
             // searchToolStripMenuItem
             // 
             this.searchToolStripMenuItem.Name = "searchToolStripMenuItem";
-            this.searchToolStripMenuItem.Size = new System.Drawing.Size(67, 24);
+            this.searchToolStripMenuItem.Size = new System.Drawing.Size(67, 26);
             this.searchToolStripMenuItem.Text = "Search";
             this.searchToolStripMenuItem.Click += new System.EventHandler(this.searchToolStripMenuItem_Click);
             // 
@@ -140,13 +140,59 @@
             this.writeToolStripMenuItem,
             this.readToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(46, 24);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(46, 26);
             this.fileToolStripMenuItem.Text = "File";
+            // 
+            // writeToolStripMenuItem
+            // 
+            this.writeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toJSONToolStripMenuItem,
+            this.toTXTToolStripMenuItem});
+            this.writeToolStripMenuItem.Name = "writeToolStripMenuItem";
+            this.writeToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.writeToolStripMenuItem.Text = "Write";
+            // 
+            // toJSONToolStripMenuItem
+            // 
+            this.toJSONToolStripMenuItem.Name = "toJSONToolStripMenuItem";
+            this.toJSONToolStripMenuItem.Size = new System.Drawing.Size(145, 26);
+            this.toJSONToolStripMenuItem.Text = "to JSON";
+            this.toJSONToolStripMenuItem.Click += new System.EventHandler(this.toJSONToolStripMenuItem_Click_1);
+            // 
+            // toTXTToolStripMenuItem
+            // 
+            this.toTXTToolStripMenuItem.Name = "toTXTToolStripMenuItem";
+            this.toTXTToolStripMenuItem.Size = new System.Drawing.Size(145, 26);
+            this.toTXTToolStripMenuItem.Text = "to TXT";
+            this.toTXTToolStripMenuItem.Click += new System.EventHandler(this.toTXTToolStripMenuItem_Click_1);
+            // 
+            // readToolStripMenuItem
+            // 
+            this.readToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fromJSONToolStripMenuItem,
+            this.fromTXTToolStripMenuItem});
+            this.readToolStripMenuItem.Name = "readToolStripMenuItem";
+            this.readToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.readToolStripMenuItem.Text = "Read";
+            // 
+            // fromJSONToolStripMenuItem
+            // 
+            this.fromJSONToolStripMenuItem.Name = "fromJSONToolStripMenuItem";
+            this.fromJSONToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.fromJSONToolStripMenuItem.Text = "From JSON";
+            this.fromJSONToolStripMenuItem.Click += new System.EventHandler(this.fromJSONToolStripMenuItem_Click_1);
+            // 
+            // fromTXTToolStripMenuItem
+            // 
+            this.fromTXTToolStripMenuItem.Name = "fromTXTToolStripMenuItem";
+            this.fromTXTToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.fromTXTToolStripMenuItem.Text = "From TXT";
+            this.fromTXTToolStripMenuItem.Click += new System.EventHandler(this.fromTXTToolStripMenuItem_Click_1);
             // 
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 28);
+            this.splitContainer1.Location = new System.Drawing.Point(0, 30);
             this.splitContainer1.Margin = new System.Windows.Forms.Padding(4);
             this.splitContainer1.Name = "splitContainer1";
             // 
@@ -173,7 +219,7 @@
             this.splitContainer1.Panel2.Controls.Add(this.label2);
             this.splitContainer1.Panel2.Controls.Add(this.label1);
             this.splitContainer1.Panel2.Controls.Add(this.Questionnaire);
-            this.splitContainer1.Size = new System.Drawing.Size(1924, 1012);
+            this.splitContainer1.Size = new System.Drawing.Size(1924, 1010);
             this.splitContainer1.SplitterDistance = 1299;
             this.splitContainer1.SplitterWidth = 5;
             this.splitContainer1.TabIndex = 1;
@@ -296,25 +342,25 @@
             // 
             this.TableOfCrypto.AllowUserToAddRows = false;
             this.TableOfCrypto.AllowUserToResizeRows = false;
-            dataGridViewCellStyle13.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle13.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.Color.Black;
-            this.TableOfCrypto.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
+            this.TableOfCrypto.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.TableOfCrypto.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.TableOfCrypto.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(232)))));
             this.TableOfCrypto.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TableOfCrypto.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.TableOfCrypto.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.TableOfCrypto.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.TableOfCrypto.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.TableOfCrypto.ColumnHeadersHeight = 71;
             this.TableOfCrypto.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ShortName,
@@ -334,14 +380,14 @@
             this.NameOfMemeCommunity,
             this.NumberOfFanbase,
             this.Technologies});
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(202)))), ((int)(((byte)(244)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle15.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle15.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.TableOfCrypto.DefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(202)))), ((int)(((byte)(244)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.TableOfCrypto.DefaultCellStyle = dataGridViewCellStyle3;
             this.TableOfCrypto.EnableHeadersVisualStyles = false;
             this.TableOfCrypto.GridColor = System.Drawing.Color.Black;
             this.TableOfCrypto.Location = new System.Drawing.Point(0, 0);
@@ -349,14 +395,14 @@
             this.TableOfCrypto.Name = "TableOfCrypto";
             this.TableOfCrypto.ReadOnly = true;
             this.TableOfCrypto.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle16.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(202)))), ((int)(((byte)(244)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle16.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle16.ForeColor = System.Drawing.Color.Purple;
-            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(202)))), ((int)(((byte)(244)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.TableOfCrypto.RowHeadersDefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(202)))), ((int)(((byte)(244)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Purple;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(202)))), ((int)(((byte)(244)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.TableOfCrypto.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.TableOfCrypto.RowHeadersWidth = 51;
             this.TableOfCrypto.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.TableOfCrypto.Size = new System.Drawing.Size(1379, 650);
@@ -683,52 +729,6 @@
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
-            // 
-            // writeToolStripMenuItem
-            // 
-            this.writeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toJSONToolStripMenuItem,
-            this.toTXTToolStripMenuItem});
-            this.writeToolStripMenuItem.Name = "writeToolStripMenuItem";
-            this.writeToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.writeToolStripMenuItem.Text = "Write";
-            // 
-            // readToolStripMenuItem
-            // 
-            this.readToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fromJSONToolStripMenuItem,
-            this.fromTXTToolStripMenuItem});
-            this.readToolStripMenuItem.Name = "readToolStripMenuItem";
-            this.readToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.readToolStripMenuItem.Text = "Read";
-            // 
-            // toJSONToolStripMenuItem
-            // 
-            this.toJSONToolStripMenuItem.Name = "toJSONToolStripMenuItem";
-            this.toJSONToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.toJSONToolStripMenuItem.Text = "to JSON";
-            this.toJSONToolStripMenuItem.Click += new System.EventHandler(this.toJSONToolStripMenuItem_Click_1);
-            // 
-            // toTXTToolStripMenuItem
-            // 
-            this.toTXTToolStripMenuItem.Name = "toTXTToolStripMenuItem";
-            this.toTXTToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.toTXTToolStripMenuItem.Text = "to TXT";
-            this.toTXTToolStripMenuItem.Click += new System.EventHandler(this.toTXTToolStripMenuItem_Click_1);
-            // 
-            // fromJSONToolStripMenuItem
-            // 
-            this.fromJSONToolStripMenuItem.Name = "fromJSONToolStripMenuItem";
-            this.fromJSONToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.fromJSONToolStripMenuItem.Text = "From JSON";
-            this.fromJSONToolStripMenuItem.Click += new System.EventHandler(this.fromJSONToolStripMenuItem_Click_1);
-            // 
-            // fromTXTToolStripMenuItem
-            // 
-            this.fromTXTToolStripMenuItem.Name = "fromTXTToolStripMenuItem";
-            this.fromTXTToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.fromTXTToolStripMenuItem.Text = "From TXT";
-            this.fromTXTToolStripMenuItem.Click += new System.EventHandler(this.fromTXTToolStripMenuItem_Click_1);
             // 
             // MainMenu
             // 
